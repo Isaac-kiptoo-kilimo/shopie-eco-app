@@ -1,6 +1,7 @@
 import express, { Request,Response,json, NextFunction } from 'express';
-import * as dotenv from 'dotenv';
+import dotenv from "dotenv";
 import userRouter from './routes/userRoutes';
+import { testConnection } from "./config/db";
 import cors from 'cors';
 import productRoute from './routes/productRoutes';
 
@@ -30,3 +31,4 @@ app.listen(port,()=>{
     console.log(`App is running on Port: ${port}`);
     
 })
+testConnection();

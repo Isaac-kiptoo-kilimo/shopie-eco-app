@@ -56,12 +56,9 @@ Content-Type: application/json
 
 {
     "name": "Climbing Mt Kipkunur",
-    "description": "to be ready by this weekend",
-    "destination": "Mt Kipkunur",
-    "type": "Hiking",
+    "shortDescription": "to be ready by this weekend",
     "price": "1300",
-    "startDate": "12/13/2023",
-    "endDate": "12/13/2023"
+    "image": "Kenyarie",
 }
 
 ### fetching all products
