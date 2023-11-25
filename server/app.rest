@@ -3,9 +3,9 @@ POST http://localhost:3500/users/register/
 Content-Type: application/json
 
 {
-    "fullName": "Jonathan4 Ndabugi",
-    "email": "jonathan11@gmail.com",
-    "password": "123456789@Jn"
+    "fullName": "Emmanuel Kipsang",
+    "email": "emmanuelkipsang@gmail.com",
+    "password": "12345678"
 }
 
 
@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ### fetching all users
-GET http://localhost:3500/users/
+GET http://localhost:3500/users/all
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJmOTlhYzVlZS1jOWRhLTRmN2MtYjcxOS02MmFlMzZmNWI2YjUiLCJmdWxsTmFtZSI6ImlzYWFjIEtpbGltbyIsImVtYWlsIjoiaXNhYWNraWxpbW9rMkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDA3NjkyOTMsImV4cCI6MTcwMDk0MjA5M30.QA2sXFe-cWrhq6y7jsqhR9VbcAhobQJa0GtnA7i88nY
 
 

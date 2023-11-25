@@ -6,3 +6,7 @@ CREATE TABLE Users(
     role VARCHAR(100) DEFAULT 'customer',
     resetPassword INT DEFAULT 0
 )
+
+select * from Users
+
+DROP TABLE Users
