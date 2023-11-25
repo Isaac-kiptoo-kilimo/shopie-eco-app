@@ -7,7 +7,7 @@ const userRouter=Router()
 
 userRouter.post('/register', registerUserControllers)
 userRouter.post('/login', loginUserControllers)
-userRouter.put('/update', updateUserControllers)
+userRouter.put('/update/:userID', updateUserControllers)
 userRouter.get('/userDetails',verifyToken, getUserDetails)
 userRouter.get('/all', fetchAllUsersControllers)
 userRouter.get('/checkUserDetails', verifyToken, checkCredentials);

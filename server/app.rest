@@ -3,9 +3,9 @@ POST http://localhost:3500/users/register/
 Content-Type: application/json
 
 {
-    "fullName": "Isaac Kilimo",
-    "email": "isaackilimok2@gmail.com",
-    "password": "12345678@Ik"
+    "fullName": "meshack kipsang",
+    "email": "meshack@gmail.com",
+    "password": "12345678@Ek"
 }
 
 
@@ -14,8 +14,8 @@ POST http://localhost:3500/users/login/
 Content-Type: application/json
 
 {
-   "email": "isaackilimok2@gmail.com",
-   "password": "12345678@Ik" 
+   "email": "meshack@gmail.com",
+   "password": "12345678@Ek" 
 }
 
 ### fetching all users
@@ -24,12 +24,12 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZjA5OWIwNS0zYTUxLTQy
 
 
 ###update user
-POST http://localhost:3500/users/updateUser/18b1d912-6bee-4648-b22d-b64ad7ac5e63/
+PUT http://localhost:3500/users/update/7f7c87ea-960f-488e-876c-33ba1f32127f/
 Content-Type: application/json
 
 {
-    "fullName": "New meshack",
-    "email": "meshack42@gmail.com"
+    "fullName": "meshack2 kipsang2",
+    "email": "meshack3@gmail.com"
 }
 
 ### fetching single user
@@ -39,7 +39,7 @@ token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZjA5OWIwNS0zYTUxLTQ
 
 ### fetching user
 GET http://localhost:3500/users/userDetails/
-token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZjA5OWIwNS0zYTUxLTQyNWUtYTZjMS1kZGVjZjBkNWNhNTAiLCJmdWxsTmFtZSI6IklzYWFjIEtpbGltbyIsImVtYWlsIjoiaXNhYWNraWxpbW9rMkBnbWFpbC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJyZXNldFBhc3N3b3JkIjowLCJpYXQiOjE3MDA5MjEwNjIsImV4cCI6MTcwMTA5Mzg2Mn0.08NJL5E2e3sdd-0vy-sPxgai1RQ3xAmIDQ7JLCLPp2I
+token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI3ZjdjODdlYS05NjBmLTQ4OGUtODc2Yy0zM2JhMWYzMjEyN2YiLCJmdWxsTmFtZSI6Im1lc2hhY2sga2lwc2FuZyIsImVtYWlsIjoibWVzaGFja0BnbWFpbC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJyZXNldFBhc3N3b3JkIjowLCJpYXQiOjE3MDA5Mzg2MDEsImV4cCI6MTcwMTExMTQwMX0.T79Ry2bxCZJ_Tmt3_Bdbq53uTOjsUp6r9rcJG3oFqmk
 
 
 ### checking user details
@@ -48,7 +48,7 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZjA5OWIwNS0zYTUxLTQy
 
 
 #### deleting user
-DELETE http://localhost:3500/users/delete/af604f8a-312d-4eef-b42d-d6e2ca7f11e8/
+DELETE http://localhost:3500/users/delete/5/
 
 ###### creating new product
 POST http://localhost:3500/products/create

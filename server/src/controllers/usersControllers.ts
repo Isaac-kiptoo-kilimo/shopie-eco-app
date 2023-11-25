@@ -149,8 +149,8 @@ try{
 export const updateUserControllers=async (req:Request, res:Response)=>{
     try{
         
-        const { userID,fullName, email }=req.body
-        // const {userID}=req.params
+        const { fullName, email }=req.body
+        const {userID}=req.params
         const { error } = validateUpdateuser.validate(req.body);
         if (error)
           return res.status(403).json({ success: false, message: error.details[0].message });
@@ -204,6 +204,7 @@ export const getSingleUserController = async (req: Request, res: Response) => {
       })
     }
   };
+
 
   export const deleteUserController=async(req:Request,res:Response)=>{
     try{
