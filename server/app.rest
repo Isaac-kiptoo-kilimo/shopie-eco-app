@@ -1,0 +1,99 @@
+###
+POST http://localhost:3500/users/register/
+Content-Type: application/json
+
+{
+    "fullName": "Jonathan4 Ndabugi",
+    "email": "jonathan11@gmail.com",
+    "password": "123456789@Jn"
+}
+
+
+### login 
+POST http://localhost:3500/users/login/
+Content-Type: application/json
+
+{
+   "email": "isaackilimok2@gmail.com",
+   "password": "12345678@Ik" 
+}
+
+### fetching all users
+GET http://localhost:3500/users/
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJmOTlhYzVlZS1jOWRhLTRmN2MtYjcxOS02MmFlMzZmNWI2YjUiLCJmdWxsTmFtZSI6ImlzYWFjIEtpbGltbyIsImVtYWlsIjoiaXNhYWNraWxpbW9rMkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDA3NjkyOTMsImV4cCI6MTcwMDk0MjA5M30.QA2sXFe-cWrhq6y7jsqhR9VbcAhobQJa0GtnA7i88nY
+
+
+###update user
+POST http://localhost:3500/users/updateUser/18b1d912-6bee-4648-b22d-b64ad7ac5e63/
+Content-Type: application/json
+
+{
+    "fullName": "New meshack",
+    "email": "meshack42@gmail.com"
+}
+
+### fetching single user
+GET http://localhost:3500/users/singleUser/f99ac5ee-c9da-4f7c-b719-62ae36f5b6b5/
+token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJmOTlhYzVlZS1jOWRhLTRmN2MtYjcxOS02MmFlMzZmNWI2YjUiLCJmdWxsTmFtZSI6ImlzYWFjIEtpbGltbyIsImVtYWlsIjoiaXNhYWNraWxpbW9rMkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJoYXNCb29rZWQiOjEsInJlc2V0UGFzc3dvcmQiOm51bGwsImlhdCI6MTcwMDc5NzAwNSwiZXhwIjoxNzAwOTY5ODA1fQ.zTajHdnjgynT37ygVyur4YeYNP9hJAZq7nko_e-OaKk
+
+
+### fetching user
+GET http://localhost:3500/users/details/
+token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJlYjFmMzJmMC1hNWU5LTRiODktOTQzMS1iNjEzNzRlMzM0MzIiLCJmdWxsTmFtZSI6IkRhbmllbCBLaXRoZWthIiwiZW1haWwiOiJkYW5pZWxAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDAzNzA5MzYsImV4cCI6MTcwMDU0MzczNn0.SQsvo2KajTcz6AhCntxMKjKh6eRDZM8w6uj3c0D_HGc
+
+
+### checking user details
+GET http://localhost:3500/users/checkUserDetails/
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJmOTlhYzVlZS1jOWRhLTRmN2MtYjcxOS02MmFlMzZmNWI2YjUiLCJmdWxsTmFtZSI6IklzYWFjIEtpbGltbyIsImVtYWlsIjoiaXNhYWNraWxpbW9rMkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDAyOTYwODIsImV4cCI6MTcwMDQ2ODg4Mn0.jK91lrBPSp7dR9tzAWmAqFJ5-hw2CZiBMAqz0C6MB8g
+
+
+#### deleting user
+DELETE http://localhost:3500/users/delete/af604f8a-312d-4eef-b42d-d6e2ca7f11e8/
+
+###### creating new product
+POST http://localhost:3500/products/create
+Content-Type: application/json
+
+{
+    "name": "Climbing Mt Kipkunur",
+    "description": "to be ready by this weekend",
+    "destination": "Mt Kipkunur",
+    "type": "Hiking",
+    "price": "1300",
+    "startDate": "12/13/2023",
+    "endDate": "12/13/2023"
+}
+
+### fetching all products
+
+GET http://localhost:3500/products/all
+
+
+### fetching one product
+GET http://localhost:3500/products/single/0b1c7208-9895-40cb-b911-9aefecfeeeb3/
+
+
+###### Updating product
+PUT  http://localhost:3500/products/update/39f7e435-6b1f-401a-8e7c-56c26e2a2fb5/
+Content-Type: application/json
+
+{
+    "name": "Daring the waters",
+    "description": "We will have swimming activities",
+    "destination": "londiani and malindi",
+    "price": 7000,
+    "type": "culture",
+    "startDate": "2023-11-10",
+    "endDate": "2023-11-22",
+    "duration": "7"
+  }
+
+### search product by types
+GET http://localhost:3500/products/search?type=GA
+
+
+# Deleting a product
+###
+DELETE http://localhost:3500/products/5cce8f95-b5bb-47db-bc92-a500c401ae93/
+
+
