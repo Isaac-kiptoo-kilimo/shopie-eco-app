@@ -221,15 +221,81 @@ export const getSingleUserController = async (req: Request, res: Response) => {
     }
   }
 
-  export const resetPasswordControllers=(req:Request,res:Response)=>{
-    try{
-
-    }catch(error){
-        return res.json({
-            error:error
-        })
-    }
+  export const resetPasswordControllers=async(req:Request,res:Response)=>{
+    try {
+        const { userID } = req.params;
+        const { newPassword } = req.body;
+    
+        // Hash the new password before updating
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+    
+        // Update the password using the database helper class
+        const result = await dbhelpers.execute('ResetPassword', {
+          userID,
+          newPassword: hashedPassword,
+        });
+    
+        if (result.rowsAffected[0] > 0) {
+          res.status(200).json({ message: 'Password reset successful.' });
+        } else {
+          res.status(404).json({ message: 'User not found or password not reset.' });
+        }
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    
   }
+
+
+  export const setResetTokenAndExpirationController = async (req: Request, res: Response) => {
+    try {
+      const { userID, resetToken, expiration } = req.body;
+  
+      // Update the reset token and expiration using the database helper class
+      const result = await dbhelpers.execute('SetResetTokenAndExpiration', {
+        userID,
+        resetToken,
+        expiration,
+      });
+  
+      if (result.rowsAffected[0] > 0) {
+        res.status(200).json({ message: 'Reset token and expiration set successfully.' });
+      } else {
+        res.status(404).json({ message: 'User not found or reset token not set.' });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+  
+
+  export const checkResetTokenExpiryController = async (req: Request, res: Response) => {
+    try {
+      const { userID } = req.params;
+  
+      // Check reset token expiry using the database helper class
+
+      const newDateTime=new Date().toISOString()
+      const result = await dbhelpers.execute('CheckResetTokenExpiry', {
+        userID,
+        currentDateTime: newDateTime,
+      });
+  
+      const resetTokenExpires = result.recordset[0]?.resetPasswordExpires;
+  
+      if (resetTokenExpires && new Date(resetTokenExpires) > new Date()) {
+        res.status(200).json({ message: 'Reset token is still valid.' });
+      } else {
+        res.status(400).json({ message: 'Invalid or expired reset token.' });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+
 
   export const forgotPasswordController=(req:Request,res:Response)=>{
     try{
@@ -240,3 +306,6 @@ export const getSingleUserController = async (req: Request, res: Response) => {
         })
     }
   }
+
+
+  
