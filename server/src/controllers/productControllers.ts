@@ -16,8 +16,8 @@ export const AddProduct = async (req: Request, res: Response) => {
     const request = pool.request();
 
     request.input("ProductID", mssql.UniqueIdentifier, ProductID);
-    request.input("name", mssql.VarChar(100), name);
-    request.input("shortDescription", mssql.VarChar(200), shortDescription);
+    request.input("name", mssql.VarChar(200), name);
+    request.input("shortDescription", mssql.VarChar(300), shortDescription);
     request.input("price", mssql.Int, price);
     request.input("image", mssql.VarChar(1000), image);
 
@@ -43,6 +43,90 @@ export const AddProduct = async (req: Request, res: Response) => {
     });
   }
 };
+
+
+// Update user status
+export const UpdateProductControllers = async (req: Request, res: Response) => {
+  try {
+    const {name, shortDescription, price, image } = req.body;
+    const {productID} =req.params
+    if (! productID) {
+      return res
+        .status(400)
+        .json({ error: "product not found" });
+    }
+    const pool = await mssql.connect(dbConfig);
+
+    const updatedProduct = await pool.request().input("productID",
+    mssql.VarChar(100),productID).input("name",mssql.VarChar(200),name).input("shortDescription", mssql.VarChar(300), shortDescription).input("price",
+    mssql.Int,price).input("image", mssql.VarChar(1000),image).execute("UpdateProduct");
+
+
+    return res.status(200).json({
+      success: true,
+      message: "Product status updated successfully",
+    });
+  } catch (error) {
+    return res.json({
+      error: error,
+    });
+  }
+};
+
+
+// Get single product
+export const getSingleProduct = async (req: Request, res: Response) => {
+  try {
+    const { productID } = req.params;
+
+    if (!productID) {
+      return res.status(400).json({ error: "name parameter is required." });
+    }
+
+    const pool = await mssql.connect(dbConfig);
+
+    const request = pool.request();
+
+    request.input("productID", mssql.VarChar(100), productID);
+
+    const result = await request.execute("getSingleProduct");
+
+    if (result.recordset.length > 0) {
+      return res.status(200).json({
+        success: true,
+        user: result.recordset[0],
+      });
+    } else {
+      return res
+        .status(404)
+        .json({ success: false, message: "Product not found." });
+    }
+  } catch (error) {
+    return res.json({
+      error: error,
+    });
+  }
+};
+
+export const fetchAllProductsControllers=async(req:Request,res:Response)=>{
+
+  try{
+    const pool=await mssql.connect(dbConfig);
+
+  const result=await pool.request().execute('fetchAllProducts')
+
+  const fetchedProduct=result.recordset
+console.log(fetchedProduct);
+
+  return res.json(fetchedProduct)
+  
+  }catch(error){
+    return res.json({
+      error:error
+    })
+  }
+}
+
 
 //delete product
 export const deleteProduct = async (req: Request, res: Response) => {
@@ -85,93 +169,6 @@ export const deleteProduct = async (req: Request, res: Response) => {
     });
   }
 };
-
-// Update user status
-export const UpdateProduct = async (req: Request, res: Response) => {
-  try {
-    const { AssignedProductName, newStatus } = req.body;
-
-    if (!AssignedProductName || !newStatus) {
-      return res
-        .status(400)
-        .json({ error: "assignedUserEmail and newStatus are required." });
-    }
-    const pool = await mssql.connect(dbConfig);
-
-    const request = pool.request();
-
-    request.input(
-      "AssignedUserEmail",
-      mssql.NVarChar(255),
-      AssignedProductName
-    );
-    request.input("NewStatus", mssql.NVarChar(255), newStatus);
-    await request.execute("UpdateProduct");
-
-    return res.status(200).json({
-      success: true,
-      message: "Product status updated successfully",
-    });
-  } catch (error) {
-    return res.json({
-      error: error,
-    });
-  }
-};
-
-
-// Get single product
-export const getSingleProduct = async (req: Request, res: Response) => {
-  try {
-    const { name } = req.params;
-
-    if (!name) {
-      return res.status(400).json({ error: "name parameter is required." });
-    }
-
-    const pool = await mssql.connect(dbConfig);
-
-    const request = pool.request();
-
-    request.input("name", mssql.VarChar(250), name);
-
-    const result = await request.query("EXEC getSingleProduct @name");
-
-    if (result.recordset.length > 0) {
-      return res.status(200).json({
-        success: true,
-        user: result.recordset[0],
-      });
-    } else {
-      return res
-        .status(404)
-        .json({ success: false, message: "Product not found." });
-    }
-  } catch (error) {
-    return res.json({
-      error: error,
-    });
-  }
-};
-
-export const fetchAllProductsControllers=async(req:Request,res:Response)=>{
-
-  try{
-    const pool=await mssql.connect(dbConfig);
-
-  const result=await pool.request().execute('fetchAllProducts')
-
-  const fetchedProduct=result.recordset
-console.log(fetchedProduct);
-
-  return res.json(fetchedProduct)
-  
-  }catch(error){
-    return res.json({
-      error:error
-    })
-  }
-}
 
 
 function execute(arg0: string, arg1: { ProductID: string; name: any; shortDescription: any; price: any; image: any; }) {

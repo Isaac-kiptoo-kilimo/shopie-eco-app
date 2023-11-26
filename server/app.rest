@@ -55,10 +55,10 @@ POST http://localhost:3500/products/create
 Content-Type: application/json
 
 {
-    "name": "Dr Mattress",
-    "shortDescription": "This is a good mattress with high density",
-    "price": 5600,
-    "image": "https://media.istockphoto.com/id/1430080532/photo/bedroom-without-sheets.webp?b=1&s=612x612&w=0&k=20&c=7_c725vsPgGRxQJLD13VAt5zOk6TvFT4KWZba4RYBfg="
+    "name": "new Tv Stand",
+    "shortDescription": "This is a good Tv stand for modern house",
+    "price": 2200,
+    "image": "https://media.istockphoto.com/id/937510970/photo/smart-tv-mockup-with-black-glossy-screen-on-console-in-living-room.jpg?s=2048x2048&w=is&k=20&c=0_fvqr0Hrqd3NR9C5tsDF2ys6rQQBJEcYI_o6fyvlg0="
 }
 
 ### fetching all products
@@ -67,22 +67,18 @@ GET http://localhost:3500/products/all
 
 
 ### fetching one product
-GET http://localhost:3500/products/single/0b1c7208-9895-40cb-b911-9aefecfeeeb3/
+GET http://localhost:3500/products/single/82B7DAD8-DA99-40FB-B143-1D2AD2437D64/
 
 
 ###### Updating product
-PUT  http://localhost:3500/products/update/39f7e435-6b1f-401a-8e7c-56c26e2a2fb5/
+PUT  http://localhost:3500/products/update/82B7DAD8-DA99-40FB-B143-1D2AD2437D64/
 Content-Type: application/json
 
 {
-    "name": "Daring the waters",
-    "description": "We will have swimming activities",
-    "destination": "londiani and malindi",
-    "price": 7000,
-    "type": "culture",
-    "startDate": "2023-11-10",
-    "endDate": "2023-11-22",
-    "duration": "7"
+    "name": "Black Tv Stand",
+    "shortDescription": "They are remainin two in stock",
+    "price": 2800,
+    "image": "https://media.istockphoto.com/id/1430080532/photo/bedroom-without-sheets.webp?b=1&s=612x612&w=0&k=20&c=7_c725vsPgGRxQJLD13VAt5zOk6TvFT4KWZba4RYBfg="
   }
 
 ### search product by types

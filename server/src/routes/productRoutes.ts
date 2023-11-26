@@ -1,12 +1,13 @@
 import { Router } from "express";
-import { AddProduct, deleteProduct, fetchAllProductsControllers } from "../controllers/productControllers";
+import { AddProduct, UpdateProductControllers, deleteProduct, fetchAllProductsControllers, getSingleProduct } from "../controllers/productControllers";
 
 
 const productRoute=Router()
 
 
 productRoute.post('/create', AddProduct)
-
+productRoute.put('/update/:productID', UpdateProductControllers)
+productRoute.get('/single/:productID', getSingleProduct)
 productRoute.get('/all', fetchAllProductsControllers)
 productRoute.delete('/delete/:ProductID', deleteProduct);
 
