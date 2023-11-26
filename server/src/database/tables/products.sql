@@ -3,7 +3,7 @@ CREATE TABLE Products (
     name VARCHAR(200) NOT NULL,
     shortDescription VARCHAR(300) NOT NULL,
     price INT NOT NULL,
-    image VARCHAR(200) NOT NULL
+    image VARCHAR(1000) NOT NULL
 );
 
 DROP TABLE IF EXISTS Products;

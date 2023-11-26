@@ -48,20 +48,17 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZjA5OWIwNS0zYTUxLTQy
 
 
 #### deleting user
-DELETE http://localhost:3500/users/delete/5/
+DELETE http://localhost:3500/users/delete/1f5d47ee-2d2b-4fc6-ac33-60891396b167/
 
 ###### creating new product
 POST http://localhost:3500/products/create
 Content-Type: application/json
 
 {
-    "name": "Climbing Mt Kipkunur",
-    "description": "to be ready by this weekend",
-    "destination": "Mt Kipkunur",
-    "type": "Hiking",
-    "price": "1300",
-    "startDate": "12/13/2023",
-    "endDate": "12/13/2023"
+    "name": "Dr Mattress",
+    "shortDescription": "This is a good mattress with high density",
+    "price": 5600,
+    "image": "https://media.istockphoto.com/id/1430080532/photo/bedroom-without-sheets.webp?b=1&s=612x612&w=0&k=20&c=7_c725vsPgGRxQJLD13VAt5zOk6TvFT4KWZba4RYBfg="
 }
 
 ### fetching all products
@@ -94,6 +91,6 @@ GET http://localhost:3500/products/search?type=GA
 
 # Deleting a product
 ###
-DELETE http://localhost:3500/products/5cce8f95-b5bb-47db-bc92-a500c401ae93/
+DELETE http://localhost:3500/products/delete/492776AB-44CC-4468-B1B2-207C35E2B87C/
 
 

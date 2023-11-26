@@ -5,7 +5,7 @@ AddProduct(
     @name VARCHAR(100),
     @shortDescription VARCHAR(200),
     @price INT,
-    @image VARCHAR(100)
+    @image VARCHAR(1000)
 
 )
 AS

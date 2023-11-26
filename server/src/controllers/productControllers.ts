@@ -18,8 +18,8 @@ export const AddProduct = async (req: Request, res: Response) => {
     request.input("ProductID", mssql.UniqueIdentifier, ProductID);
     request.input("name", mssql.VarChar(100), name);
     request.input("shortDescription", mssql.VarChar(200), shortDescription);
-    request.input("price", mssql.VarChar(300), price);
-    request.input("image", mssql.VarChar(100), image);
+    request.input("price", mssql.Int, price);
+    request.input("image", mssql.VarChar(1000), image);
 
     const result = await request.execute("AddProduct");
 
@@ -44,25 +44,28 @@ export const AddProduct = async (req: Request, res: Response) => {
   }
 };
 
-//delete user
+//delete product
 export const deleteProduct = async (req: Request, res: Response) => {
   try {
-    const { ProductID } = req.body;
+    const { ProductID } = req.params;
+
+    console.log(ProductID);
+    
 
     if (!ProductID) {
-      return res.status(400).json({ error: "userID is required." });
+      return res.status(400).json({ error: "productID is required." });
     }
 
     const pool = await mssql.connect(dbConfig);
 
-    const request = pool.request();
-
-    request.input("ProductID", mssql.VarChar(1000), ProductID);
+    const request = pool.request().input("ProductID", mssql.VarChar(100), ProductID);
 
     const result = await request.execute("deleteProduct");
 
     const deletionResult = result.recordset[0].DeletionResult;
 
+    console.log(deletionResult);
+    
     if (deletionResult === 1) {
       return res
         .status(200)
@@ -115,7 +118,9 @@ export const UpdateProduct = async (req: Request, res: Response) => {
     });
   }
 };
-// Get single user by email
+
+
+// Get single product
 export const getSingleProduct = async (req: Request, res: Response) => {
   try {
     const { name } = req.params;
@@ -148,6 +153,27 @@ export const getSingleProduct = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const fetchAllProductsControllers=async(req:Request,res:Response)=>{
+
+  try{
+    const pool=await mssql.connect(dbConfig);
+
+  const result=await pool.request().execute('fetchAllProducts')
+
+  const fetchedProduct=result.recordset
+console.log(fetchedProduct);
+
+  return res.json(fetchedProduct)
+  
+  }catch(error){
+    return res.json({
+      error:error
+    })
+  }
+}
+
+
 function execute(arg0: string, arg1: { ProductID: string; name: any; shortDescription: any; price: any; image: any; }) {
     throw new Error("Function not implemented.");
 }
