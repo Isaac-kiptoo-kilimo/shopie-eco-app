@@ -23,7 +23,7 @@ export class UserService {
 
 getUsers(): Observable<User[]> {
   const token = localStorage.getItem('token') as string;
-  return this.http.get<User[]>('http://localhost:4500/users/', {
+  return this.http.get<User[]>('http://localhost:3500/users/all', {
     headers: {
       'Content-type': 'application/json',
       'token': token

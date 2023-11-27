@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,12 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor (private router: Router){}
+  loggedIn: boolean = false;
+  showProfileDropdown: boolean = false;
 
+
+  constructor(private router: Router, private authService: AuthService, private formBuilder:FormBuilder) {
+    this.loggedIn = authService.isLoggedIn();
+  }
 
   loggedInTrue = localStorage.getItem('loggedIn')
 
-  loggedIn = this.loggedInTrue
+  // loggedIn = this.loggedInTrue
 
   ngOnInit(): void {
   
@@ -26,14 +33,16 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  Logout(){
-    
-    this.router.navigate([''])
-    localStorage.clear()
+  
+ 
 
-    console.log(localStorage.getItem('token'));
-    
+  logout() {
+    this.router.navigate(['']);
+    localStorage.clear();
+    this.loggedIn = false;
   }
 
-  date = new Date()
+  toggleProfileDropdown() {
+    this.showProfileDropdown = !this.showProfileDropdown;
+  }
 }

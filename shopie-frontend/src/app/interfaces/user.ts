@@ -34,3 +34,14 @@ export interface updatedUserData {
   fullName: string,
   email: string,
 };
+
+
+
+export interface Person extends User{
+  age: number;
+}
+
+export interface Guy extends Person{
+  profession:string;
+  color:string;
+}
