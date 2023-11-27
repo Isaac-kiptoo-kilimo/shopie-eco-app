@@ -1,4 +1,11 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Product } from 'src/app/interfaces/product';
+import { User } from 'src/app/interfaces/user';
+import { ProductService } from 'src/app/services/product.service';
+import { Router } from '@angular/router';
+// import { ModalCommunicationService } from 'src/app/services/modal-communication.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,8 +15,140 @@ import { Component } from '@angular/core';
 export class AdminComponent {
 
   visible = true
-  constructor(){}
+  notVisible=false
+  loggedIn=true
 
+  createProductForm!: FormGroup
+  products!: Product[];
+  users!: User[];
+
+  updateProductForm!: FormGroup
+  product!: Product
+  productID: string=''
+  updateProductID :string =''
+
+  constructor(
+    private productService:ProductService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private userService: UserService
+  ) {
+this.createProductForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      shortDescription: ['', [Validators.required]],
+      image:['',[Validators.required]]
+    }
+      );
+
+
+    
+  }
+
+
+  ngOnInit() {
+    this.getProducts();
+    this.getUsers();
+
+
+    
+ }
+
+  getProducts() {
+    this.productService.getProducts().subscribe(
+      (response) => {
+        this.products = response;
+      },
+      (error) => {
+        console.error('Error fetching tours:', error);
+      }
+    );
+  }
+
+  createProduct() {
+    let createProduct: Product = this.createProductForm.value;
+    this.productService.createProduct(createProduct).subscribe(
+      () => {
+        this.getProducts();
+        this.loadProducts();
+        this.visible=true
+       
+      },
+      (error) => {
+        console.error('Error creating products:', error);
+      }
+    );
+  }
+
+  getUsers() {
+    this.userService.getUsers().subscribe(
+      (response) => {
+        this.users = response;
+      },
+      (error) => {
+        console.error('Error fetching users:',error.error.message);
+      }
+    );
+  }
+
+  loadProducts(): void {
+    this.productService.getProducts().subscribe(
+      (products) => {
+        this.products = products;
+        this.loadProducts();
+      },
+      (error) => {
+        console.error('Error fetching products:', error);
+      }
+    );
+
+    
+  }
+
+  loadUsers(): void {
+    this.userService.getUsers().subscribe(
+      (users) => {
+        this.users = users;
+        this.loadUsers();
+      },
+      (error) => {
+        console.error('Error fetching tours:', error);
+      }
+    );
+  }
+
+  deleteProduct(productID: string): void {
+    alert('Are you sure You want to delete, this action is irreversible')
+    this.productService.deleteProduct(productID).subscribe(
+      () => {
+        this.loadProducts();
+      },
+      (error) => {
+        console.error('Error deleting product:', error);
+      }
+    );
+  }
+
+
+  deleteUser(userID: string): void {
+    alert('Are you sure You want to delete, this action is irreversible')
+    this.userService.deleteUser(userID).subscribe(
+      () => {
+        this.loadUsers();
+      },
+      (error) => {
+        console.error('Error deleting Tour:', error);
+      }
+    );
+  }
   
 
+  clickUpdateProductID = (productID:string)=> {
+    this.updateProductID = productID
+
+    console.log(this.updateProductID);
+    
+  }
+
+ 
 }
