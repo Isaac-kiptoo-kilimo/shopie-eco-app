@@ -1,19 +1,17 @@
--- use TESTSHOPPIE
--- drop procedure deleteProduct
--- select * from Products
-CREATE OR ALTER PROCEDURE deleteProduct
-    @ProductID VARCHAR(1000)  
+CREATE OR ALTER PROCEDURE deleteProduct(
+    @ProductID VARCHAR(100)
+)  
 AS
 BEGIN
-       
+
         IF EXISTS (
             SELECT 1
-            FROM Projects
-            WHERE ProductID = @ID
+            FROM Products
+            WHERE ProductID = @ProductID
         )
         BEGIN
-            
-            DELETE FROM Projects
+
+            DELETE FROM Products
             WHERE ProductID = @ProductID;
 
             SELECT 1 AS DeletionResult; 

@@ -1,7 +1,8 @@
 create or Alter procedure getSingleProduct
-@name VARCHAR(250)
+@ProductID VARCHAR(100)
+
 AS
 BEGIN
     select * from Products
-where name = @name
+where ProductID = @ProductID
 END

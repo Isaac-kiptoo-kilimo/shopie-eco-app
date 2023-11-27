@@ -1,9 +1,9 @@
 CREATE TABLE Products (
-    userID VARCHAR(100) PRIMARY KEY,
-    name VARCHAR(200),
-    shortDescription VARCHAR(300) UNIQUE,
-    price VARCHAR(100),
-    image VARCHAR(200)
+    productID VARCHAR(100) PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    shortDescription VARCHAR(300) NOT NULL,
+    price INT NOT NULL,
+    image VARCHAR(1000) NOT NULL
 );
 
 DROP TABLE IF EXISTS Products;

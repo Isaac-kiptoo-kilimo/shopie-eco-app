@@ -1,12 +1,8 @@
 import { Request, Response } from "express";
 import mssql, { pool } from "mssql";
-// import bcrypt from "bcrypt";
-// import jwt from "jsonwebtoken";
 import { dbConfig } from "../config/db";
 import { v4 } from "uuid";
-// import { log } from "console";
-// import { execute, query } from "../services/dbhelper";
-// import { hashPass } from "../services/hashPassword";
+
 
 //create product
 export const AddProduct = async (req: Request, res: Response) => {
@@ -20,10 +16,10 @@ export const AddProduct = async (req: Request, res: Response) => {
     const request = pool.request();
 
     request.input("ProductID", mssql.UniqueIdentifier, ProductID);
-    request.input("name", mssql.VarChar(100), name);
-    request.input("shortDescription", mssql.VarChar(200), shortDescription);
-    request.input("price", mssql.VarChar(300), price);
-    request.input("image", mssql.VarChar(100), image);
+    request.input("name", mssql.VarChar(200), name);
+    request.input("shortDescription", mssql.VarChar(300), shortDescription);
+    request.input("price", mssql.Int, price);
+    request.input("image", mssql.VarChar(1000), image);
 
     const result = await request.execute("AddProduct");
 
@@ -48,25 +44,112 @@ export const AddProduct = async (req: Request, res: Response) => {
   }
 };
 
-//delete user
-export const deleteProduct = async (req: Request, res: Response) => {
-  try {
-    const { ProductID } = req.body;
 
-    if (!ProductID) {
-      return res.status(400).json({ error: "userID is required." });
+// Update user status
+export const UpdateProductControllers = async (req: Request, res: Response) => {
+  try {
+    const {name, shortDescription, price, image } = req.body;
+    const {productID} =req.params
+    if (! productID) {
+      return res
+        .status(400)
+        .json({ error: "product not found" });
+    }
+    const pool = await mssql.connect(dbConfig);
+
+    const updatedProduct = await pool.request().input("productID",
+    mssql.VarChar(100),productID).input("name",mssql.VarChar(200),name).input("shortDescription", mssql.VarChar(300), shortDescription).input("price",
+    mssql.Int,price).input("image", mssql.VarChar(1000),image).execute("UpdateProduct");
+
+
+    return res.status(200).json({
+      success: true,
+      message: "Product status updated successfully",
+    });
+  } catch (error) {
+    return res.json({
+      error: error,
+    });
+  }
+};
+
+
+// Get single product
+export const getSingleProduct = async (req: Request, res: Response) => {
+  try {
+    const { productID } = req.params;
+
+    if (!productID) {
+      return res.status(400).json({ error: "name parameter is required." });
     }
 
     const pool = await mssql.connect(dbConfig);
 
     const request = pool.request();
 
-    request.input("ProductID", mssql.VarChar(1000), ProductID);
+    request.input("productID", mssql.VarChar(100), productID);
+
+    const result = await request.execute("getSingleProduct");
+
+    if (result.recordset.length > 0) {
+      return res.status(200).json({
+        success: true,
+        user: result.recordset[0],
+      });
+    } else {
+      return res
+        .status(404)
+        .json({ success: false, message: "Product not found." });
+    }
+  } catch (error) {
+    return res.json({
+      error: error,
+    });
+  }
+};
+
+export const fetchAllProductsControllers=async(req:Request,res:Response)=>{
+
+  try{
+    const pool=await mssql.connect(dbConfig);
+
+  const result=await pool.request().execute('fetchAllProducts')
+
+  const fetchedProduct=result.recordset
+console.log(fetchedProduct);
+
+  return res.json(fetchedProduct)
+  
+  }catch(error){
+    return res.json({
+      error:error
+    })
+  }
+}
+
+
+//delete product
+export const deleteProduct = async (req: Request, res: Response) => {
+  try {
+    const { ProductID } = req.params;
+
+    console.log(ProductID);
+    
+
+    if (!ProductID) {
+      return res.status(400).json({ error: "productID is required." });
+    }
+
+    const pool = await mssql.connect(dbConfig);
+
+    const request = pool.request().input("ProductID", mssql.VarChar(100), ProductID);
 
     const result = await request.execute("deleteProduct");
 
     const deletionResult = result.recordset[0].DeletionResult;
 
+    console.log(deletionResult);
+    
     if (deletionResult === 1) {
       return res
         .status(200)
@@ -87,71 +170,6 @@ export const deleteProduct = async (req: Request, res: Response) => {
   }
 };
 
-// Update user status
-export const UpdateProduct = async (req: Request, res: Response) => {
-  try {
-    const { AssignedProductName, newStatus } = req.body;
-
-    if (!AssignedProductName || !newStatus) {
-      return res
-        .status(400)
-        .json({ error: "assignedUserEmail and newStatus are required." });
-    }
-    const pool = await mssql.connect(dbConfig);
-
-    const request = pool.request();
-
-    request.input(
-      "AssignedUserEmail",
-      mssql.NVarChar(255),
-      AssignedProductName
-    );
-    request.input("NewStatus", mssql.NVarChar(255), newStatus);
-    await request.execute("UpdateProduct");
-
-    return res.status(200).json({
-      success: true,
-      message: "Product status updated successfully",
-    });
-  } catch (error) {
-    return res.json({
-      error: error,
-    });
-  }
-};
-// Get single user by email
-export const getSingleProduct = async (req: Request, res: Response) => {
-  try {
-    const { name } = req.params;
-
-    if (!name) {
-      return res.status(400).json({ error: "name parameter is required." });
-    }
-
-    const pool = await mssql.connect(dbConfig);
-
-    const request = pool.request();
-
-    request.input("name", mssql.VarChar(250), name);
-
-    const result = await request.query("EXEC getSingleProduct @name");
-
-    if (result.recordset.length > 0) {
-      return res.status(200).json({
-        success: true,
-        user: result.recordset[0],
-      });
-    } else {
-      return res
-        .status(404)
-        .json({ success: false, message: "Product not found." });
-    }
-  } catch (error) {
-    return res.json({
-      error: error,
-    });
-  }
-};
 function execute(arg0: string, arg1: { ProductID: string; name: any; shortDescription: any; price: any; image: any; }) {
     throw new Error("Function not implemented.");
 }

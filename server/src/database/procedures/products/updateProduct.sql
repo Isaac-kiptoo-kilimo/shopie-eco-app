@@ -1,19 +1,20 @@
 -- use SHOPPIE
--- select * from Products
-CREATE PROCEDURE UpdateProduct
-   @AssignedProductName NVARCHAR(255),
-   @NewStatus NVARCHAR(255)
+
+CREATE OR ALTER PROCEDURE UpdateProduct(
+   @productID VARCHAR(100),
+   @name VARCHAR(200),
+   @shortDescription VARCHAR(300),
+   @price INT,
+   @image VARCHAR(1000)
+)
+
 AS
 BEGIN
-    
-    UPDATE Users
-SET ProductStatus = @NewStatus,
-    isCompleted = CASE WHEN @NewStatus = 'completed' THEN 1 ELSE 0 END
-WHERE AssignedProductName = @AssignedProductName;
-
+    UPDATE Products
+    SET
+        name = @name,
+        shortDescription = @shortDescription,
+        price = @price,
+        image = @image
+    WHERE productID = @productID;
 END;
-DROP PROCEDURE  UpdateProduct
--- UPDATE User
-    -- SET ProductStatus = @NewStatus
-    -- WHERE AssignedProductName = @AssignedProductName;
-

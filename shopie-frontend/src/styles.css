@@ -1,4 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    scroll-behavior: smooth;
+  }
+
+  .gradient {
+    background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  }
