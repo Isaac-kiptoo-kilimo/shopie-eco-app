@@ -17,6 +17,7 @@ export class AdminComponent {
   visible = true
   notVisible=false
   loggedIn=true
+  hidden=true
 
   createProductForm!: FormGroup
   products!: Product[];
