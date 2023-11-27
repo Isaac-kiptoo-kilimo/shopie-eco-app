@@ -144,12 +144,7 @@ this.createProductForm = this.formBuilder.group({
   }
   
 
-  clickUpdateProductID = (productID:string)=> {
-    this.updateProductID = productID
-
-    console.log(this.updateProductID);
-    
-  }
+ 
 
  
 }
