@@ -10,7 +10,7 @@ import { ProductService } from '../services/product.service';
 })
 export class UpdateProductComponent {
 
-  visible = true
+  hidden = true
   updateProductForm!: FormGroup
   product!: Product
   productID: string=''
