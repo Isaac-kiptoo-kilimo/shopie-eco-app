@@ -11,7 +11,7 @@
     <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
    -->
     <div class="mt-10 sm:mx-auto sm:w-full  sm:max-w-sm shadow-2xl p-6 bg-gray-100 ">
-      <form class="space-y-6 mt-7" >
+      <form class="space-y-6 mt-7" [formGroup]="logInUserForm" (ngSubmit)="loginUser()" >
         <div>
          
 
