@@ -13,6 +13,7 @@ import { LandingComponent } from './landing/landing.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { UpdateProductComponent } from './update-product/update-product.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdminComponent,
     UserComponent,
     LandingComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    UpdateProductComponent
   ],
   imports: [
     BrowserModule,

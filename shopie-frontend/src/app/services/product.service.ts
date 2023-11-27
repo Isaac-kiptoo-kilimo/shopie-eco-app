@@ -11,7 +11,7 @@ export class ProductService {
   constructor( private http:HttpClient) { }
 
   createProduct(product : Product): Observable<any> {
-    return this.http.post('http://localhost:4500/tours/create', product);
+    return this.http.post('http://localhost:3500/products/create', product);
   }
 
   getProducts(): Observable<Product[]> {
@@ -41,7 +41,7 @@ export class ProductService {
 
   
   deleteProduct(productID: string): Observable<any> {
-    return this.http.delete(`http://localhost:3500/products/${productID}`)
+    return this.http.delete(`http://localhost:3500/products/delete/${productID}`)
    
   }
 }
