@@ -11,6 +11,7 @@ import { ProductService } from '../services/product.service';
 export class UpdateProductComponent {
   
   hidden = true
+  show=true
   updateProductForm!: FormGroup
   products! : Product []
   product!: Product
@@ -31,11 +32,7 @@ export class UpdateProductComponent {
 
 
   ngOnInit() {
-    this.getProducts();
-   
-
-
-    
+    this.getProducts();  
  }
 
   getProducts() {

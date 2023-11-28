@@ -13,6 +13,8 @@
   
 <div>
     <app-navbar ></app-navbar>
+
+    
 <div class="relative w-[75vw] overflow-y-scroll h-[85vh]">
 
     <table class="w-[73vw] bg-white border border-gray-300 mt-[40px]">
@@ -32,7 +34,7 @@
             <td class="py-2 px-4 border-b">
                 <div class="flex gap-4 items-center">
                     <div>
-                        <i class="p-[10px] rounded-full fa-solid fa-trash cursor-pointer hover:bg-red-200" style="color:red"></i>
+                        <i class="p-[10px] rounded-full fa-solid fa-trash cursor-pointer hover:bg-red-200" (click)="deleteUser(user.userID)" style="color:red"></i>
                     </div>
                     <div>
                         <i class="p-[10px] rounded-full fa-solid fa-eye cursor-pointer hover:bg-green-200" style="color:black"></i>

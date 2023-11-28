@@ -52,7 +52,7 @@ updateUserById(updatedUser:updatedUserData): Observable<any> {
       const token = localStorage.getItem('token') || '';
       console.log(token);
 
-      const url = `http://localhost:4500/users/updateUser/${userID}`;
+      const url = `http://localhost:3500/users/update/${userID}`;
 
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ updateUserById(updatedUser:updatedUserData): Observable<any> {
 }
 
 deleteUser(userID: string): Observable<any> {
-  return this.http.delete(`http://localhost:4500/users/delete/${userID}`)
+  return this.http.delete(`http://localhost:3500/users/delete/${userID}`)
  
 }
 }

@@ -11,7 +11,7 @@ import { UserService } from '../services/user.service';
 export class CustomersComponent {
 
   filter=''
-
+  userID: string=''
   users!: User []
 
   constructor(private userService: UserService){
@@ -24,6 +24,18 @@ export class CustomersComponent {
       return users
     })
   }    
+
+  deleteUser(userID:string){
+    console.log(userID);
+    
+    this.userService.deleteUser(userID).subscribe((res)=>{
+      console.log("user Deleted Successfully");
+      this.getUsers()
+      
+    })
+  }
+
+
     
   }
 
