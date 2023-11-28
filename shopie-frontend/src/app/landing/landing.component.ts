@@ -28,6 +28,7 @@ ngOnInit(){
       return products
     })
   }
+
 }
 document.addEventListener('DOMContentLoaded', function () {
   const heroContainer = document.getElementById('heroImage') as HTMLElement;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
+import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,7 +11,9 @@ import { UserService } from 'src/app/services/user.service';
 export class UserComponent {
   products!: Product[];
 
-  constructor(private userService: UserService) {}
+  showCart = true
+
+  constructor(private userService: UserService,  private cartService: CartService) {}
 
   ngOnInit() {
     this.getProducts();
@@ -22,5 +25,11 @@ export class UserComponent {
       this.products = products;
       return products;
     });
+  }
+
+  addToCart(product: any) {
+    console.log(product);
+    
+    this.cartService.addToCart(product);
   }
 }
