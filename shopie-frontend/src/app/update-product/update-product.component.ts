@@ -16,6 +16,8 @@ export class UpdateProductComponent {
   product!: Product
   productID: string=''
   updateProductID :string =''
+  filter=''
+
   constructor( private formBuilder:FormBuilder, private productService:ProductService ){
 
  this.updateProductForm = this.formBuilder.group({

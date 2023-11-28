@@ -62,10 +62,17 @@ export const UpdateProductControllers = async (req: Request, res: Response) => {
     mssql.Int,price).input("image", mssql.VarChar(1000),image).execute("UpdateProduct");
 
 
-    return res.status(200).json({
-      success: true,
-      message: "Product status updated successfully",
-    });
+    if (updatedProduct.returnValue === 0) {
+      return res.status(200).json({
+        success: true,
+        message: "Product updated successfully",
+      });
+    } else {
+      return res.status(500).json({
+        success: false,
+        message: "Failed to update product",
+      });
+    }
   } catch (error) {
     return res.json({
       error: error,

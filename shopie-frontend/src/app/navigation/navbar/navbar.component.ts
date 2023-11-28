@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent implements OnInit {
   loggedIn: boolean = false;
   showProfileDropdown: boolean = false;
-
+ filter=''
 
   constructor(private router: Router, private authService: AuthService, private formBuilder:FormBuilder) {
     this.loggedIn = authService.isLoggedIn();

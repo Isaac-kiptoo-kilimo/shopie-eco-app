@@ -14,6 +14,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateProductComponent } from './update-product/update-product.component';
+import { SearchPipe } from './pipes/search.pipe';
+import { CustomersComponent } from './customers/customers.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { UpdateProductComponent } from './update-product/update-product.componen
     UserComponent,
     LandingComponent,
     NotFoundComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    SearchPipe,
+    CustomersComponent
   ],
   imports: [
     BrowserModule,
