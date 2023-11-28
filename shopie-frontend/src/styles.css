@@ -8,10 +8,10 @@ body {
     scroll-behavior: smooth;
 background-color: rgba(229, 231, 235, 0.75);	
   }
-
+/* 
   .gradient {
     background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
-  }
+  } */
 
   body {
   margin: 0;
