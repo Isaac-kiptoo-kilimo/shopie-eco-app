@@ -6,6 +6,7 @@ import { AdminComponent } from './dashboards/admin/admin.component';
 import { SingupComponent } from './auth/singup/singup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CustomersComponent } from './customers/customers.component';
 
 const routes: Routes = [
   {path: "", pathMatch: 'full', redirectTo: ""},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: "sign", component:SingupComponent},
   {path: "login", component:LoginComponent},
   {path: "user", component:UserComponent},
+  {path: "customer", component:CustomersComponent},
   {path: "admin", component:AdminComponent},
   {path: "**", component:NotFoundComponent}
 ];

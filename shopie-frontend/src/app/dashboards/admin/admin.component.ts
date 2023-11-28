@@ -18,7 +18,7 @@ export class AdminComponent {
   notVisible=false
   loggedIn=true
   hidden=true
-
+  filter=''
   createProductForm!: FormGroup
   products!: Product[];
   users!: User[];
@@ -144,12 +144,7 @@ this.createProductForm = this.formBuilder.group({
   }
   
 
-  clickUpdateProductID = (productID:string)=> {
-    this.updateProductID = productID
-
-    console.log(this.updateProductID);
-    
-  }
+ 
 
  
 }

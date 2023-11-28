@@ -12,7 +12,7 @@ userRouter.get('/userDetails', verifyToken , getUserDetails)
 userRouter.get('/all', verifyToken , fetchAllUsersControllers)
 userRouter.get('/checkUserDetails', verifyToken, checkCredentials);
 userRouter.get('/singleUser/:userID',verifyToken,getSingleUserController)
-userRouter.delete('/delete/:userID',verifyToken, deleteUserController)
+userRouter.delete('/delete/:userID', deleteUserController)
 userRouter.post('/reset-password/:userID', resetPasswordControllers);
 userRouter.post('/set-reset-token-expiration', setResetTokenAndExpirationController);
 userRouter.get('/check-reset-token-expiry/:userID', checkResetTokenExpiryController);

@@ -38,20 +38,22 @@ export class UserService {
       .pipe(map((data) => data.info.role));
   }
 
-  updateUserById(updatedUser: updatedUserData): Observable<any> {
-    return this.authService.getUserDetails().pipe(
-      switchMap((user) => {
-        console.log(user.userID);
-        let userID = user.userID;
-        const token = localStorage.getItem('token') || '';
-        console.log(token);
 
-        const url = `http://localhost:4500/users/updateUser/${userID}`;
+updateUserById(updatedUser:updatedUserData): Observable<any> {
+  return this.authService.getUserDetails().pipe(
+    switchMap((user) => {
+      console.log(user.userID);
+      let userID=user.userID
+      const token = localStorage.getItem('token') || '';
+      console.log(token);
+
+      const url = `http://localhost:3500/users/update/${userID}`;
 
         const headers = new HttpHeaders({
           'Content-Type': 'application/json',
           token: token,
         });
+
 
         return this.http.put(url, updatedUser, { headers });
       })
@@ -62,7 +64,12 @@ export class UserService {
     return this.http.delete(`http://localhost:4500/users/delete/${userID}`);
   }
 
-  
+
+deleteUser(userID: string): Observable<any> {
+  return this.http.delete(`http://localhost:3500/users/delete/${userID}`)
+ 
+}
+ 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('http://localhost:3500/products/all', {
       headers: {
@@ -70,4 +77,5 @@ export class UserService {
       },
     });
   }
+
 }

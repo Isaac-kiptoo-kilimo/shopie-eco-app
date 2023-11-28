@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/product';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +24,20 @@ export class ProductService {
   }
 
 
-  updateProductById(productID: string, updatedProduct: Product): Observable<any> {
+  updateProductById(productID: string, updatedProduct: Product): Observable<Product> {
     console.log(updatedProduct);
     console.log(productID);
     
-    
-    return this.http.put(`http://localhost:3500/products/update/${productID}`, updatedProduct);
+    return this.http.put<Product>(`http://localhost:3500/products/update/${productID}`, updatedProduct).pipe(
+      tap((updatedProduct: Product) => {
+       
+        console.log('Product updated on the server:', updatedProduct);
+      }),
+      catchError((error) => {
+        console.error('Error updating product on the server:', error);
+        return throwError(error);
+      })
+    );;
   }
   
 
