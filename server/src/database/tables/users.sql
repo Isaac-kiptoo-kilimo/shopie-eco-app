@@ -7,10 +7,11 @@ CREATE TABLE Users(
     resetPasswordToken VARCHAR(100),
     resetPasswordExpires DATETIME,
     welcomed BIT Default 0,
+    profileImage VARCHAR(1000) NOT NULL
 )
 
 select * from Users
 
-UPDATE Users SET role='Admin' where email='joshuaomondi3334@gmail.com' 
+UPDATE Users SET role='Admin' where email='isaackilimok2@gmail.com' 
 
 DROP TABLE Users

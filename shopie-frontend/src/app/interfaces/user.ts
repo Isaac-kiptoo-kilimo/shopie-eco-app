@@ -4,15 +4,14 @@ export interface User {
     email: string;
     password: string;
     role: string;
+    profileImage: string
 }
 
 
   export interface LoginResponse {
     user: User | undefined;
-    // userID(userID: any): unknown;
     token: string;
     userID:string
-    // Add other properties if needed
   }
 
   export interface userLogin {

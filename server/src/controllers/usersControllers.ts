@@ -13,7 +13,7 @@ const dbhelpers=new Connection
 
 export const registerUserControllers=async(req:Request, res:Response)=>{
 try{
-    const {fullName,email, password}=req.body
+    const {fullName,email, password,profileImage}=req.body
    
 
     const {error}=regUserValidation.validate(req.body)
@@ -36,6 +36,7 @@ try{
     .input('fullName', mssql.VarChar , fullName)
     .input('email', mssql.VarChar , email)
     .input('password', mssql.VarChar, hashedpwd)
+    .input('profileImage', mssql.VarChar, profileImage)
     .execute('registerUser')
 
     return res.status(201).json({
@@ -149,7 +150,7 @@ try{
 export const updateUserControllers=async (req:Request, res:Response)=>{
     try{
         
-        const { fullName, email }=req.body
+        const { fullName, email,profileImage }=req.body
         const {userID}=req.params
         const { error } = validateUpdateuser.validate(req.body);
         if (error)
@@ -157,7 +158,7 @@ export const updateUserControllers=async (req:Request, res:Response)=>{
          
         const pool=await mssql.connect(dbConfig)
 
-        const updatedUser= await pool.request().input('userID', mssql.VarChar , userID).input('fullName', mssql.VarChar , fullName).input('email', mssql.VarChar , email).execute('updateUser')
+        const updatedUser= await pool.request().input('userID', mssql.VarChar , userID).input('fullName', mssql.VarChar , fullName).input('email', mssql.VarChar , email).input('profileImage',mssql.VarChar, profileImage).execute('updateUser')
 
         return res.json({ 
             message: "User updated successfully" 
