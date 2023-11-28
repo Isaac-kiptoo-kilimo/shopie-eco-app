@@ -60,7 +60,6 @@ updateUserById(updatedUser:updatedUserData): Observable<any> {
     );
   }
 
- 
 deleteUser(userID: string): Observable<any> {
   return this.http.delete(`http://localhost:3500/users/delete/${userID}`)
  
