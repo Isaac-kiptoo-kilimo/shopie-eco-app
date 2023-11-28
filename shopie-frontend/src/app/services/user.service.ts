@@ -5,43 +5,38 @@ import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators'; 
+import { Product } from '../interfaces/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  apiUrl = 'http://localhost:3500/users/checkUserDetails/';
+  userID!: UserDetails;
 
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  apiUrl='http://localhost:3500/users/checkUserDetails/'
-  userID!:UserDetails;
-   
-
-  constructor(private http: HttpClient, private authService:AuthService
-    ) { }
-
-
-
-getUsers(): Observable<User[]> {
-  const token = localStorage.getItem('token') as string;
-  return this.http.get<User[]>('http://localhost:3500/users/all', {
-    headers: {
-      'Content-type': 'application/json',
-      'token': token
-    },
-  });
-}
-
+  getUsers(): Observable<User[]> {
+    const token = localStorage.getItem('token') as string;
+    return this.http.get<User[]>('http://localhost:3500/users/all', {
+      headers: {
+        'Content-type': 'application/json',
+        token: token,
+      },
+    });
+  }
 
   checkDetails(): Observable<string> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'token': token
+      token: token,
     });
 
-    return this.http.get<any>(this.apiUrl, { headers }).pipe(map(data => data.info.role));
+    return this.http
+      .get<any>(this.apiUrl, { headers })
+      .pipe(map((data) => data.info.role));
   }
-
 
 
 updateUserById(updatedUser:updatedUserData): Observable<any> {
@@ -54,18 +49,33 @@ updateUserById(updatedUser:updatedUserData): Observable<any> {
 
       const url = `http://localhost:3500/users/update/${userID}`;
 
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': token,
-      });
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          token: token,
+        });
 
-      return this.http.put(url, updatedUser, { headers });
-    })
-  );
-}
+
+        return this.http.put(url, updatedUser, { headers });
+      })
+    );
+  }
+
+  deleteUser(userID: string): Observable<any> {
+    return this.http.delete(`http://localhost:4500/users/delete/${userID}`);
+  }
+
 
 deleteUser(userID: string): Observable<any> {
   return this.http.delete(`http://localhost:3500/users/delete/${userID}`)
  
 }
+ 
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>('http://localhost:3500/products/all', {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+  }
+
 }

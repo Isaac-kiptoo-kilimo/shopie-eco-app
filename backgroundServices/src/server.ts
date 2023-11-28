@@ -1,5 +1,5 @@
 import express from 'express';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import { welcomeUser } from './mailerServices/welcomeUser';
 import cron from 'node-cron'
 dotenv.config();

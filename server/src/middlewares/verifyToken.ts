@@ -21,6 +21,8 @@ export const verifyToken=(req:ExtendeUser, res:Response, next:NextFunction )=>{
         const data= jwt.verify(token,process.env.SECRET as string) as User
 
         req.info=data
+        console.log();
+        
     }catch(error){
         return res
     }

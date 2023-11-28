@@ -1,8 +1,9 @@
 <app-navbar></app-navbar>
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+<div class="center pt-4 bg-gray-100 bg-cover bg-center h-screen rounded " style="background-image: url('https://t4.ftcdn.net/jpg/01/19/11/55/360_F_119115529_mEnw3lGpLdlDkfLgRcVSbFRuVl6sMDty.jpg');">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    
+
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-blue-600">Sign in to your account</h2>
+
     </div>
     <div class="w-full mb-4">
       <div class="h-1 mx-auto  w-64 opacity-25 my-0 py-0 rounded-t"></div>
@@ -10,7 +11,7 @@
     <!-- <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
    -->
-    <div class="mt-10 sm:mx-auto sm:w-full  sm:max-w-sm shadow-2xl p-6 bg-gray-100 ">
+    <div class="mt-10 sm:mx-auto sm:w-full rounded-md sm:max-w-sm shadow-2xl p-6 bg-gray-100 ">
       <form class="space-y-6 mt-7" [formGroup]="logInUserForm" (ngSubmit)="loginUser()" >
         <div>
          
@@ -34,15 +35,17 @@
         </div>
   
         <div>
-          <button type="submit" class="flex w-full bg-blue-600 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+
+          <button type="submit" class="flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">Sign in</button>
         </div>
       </form>
       <div class="text-sm">
-        <a href="#" class="font-semibold text-blue-600 hover:text-indigo-500">Forgot password?</a>
+        <a href="#" class="font-semibold text-black hover:text-blue-700">Forgot password?</a>
       </div>  
-      <p class="mt-10 text-center text-sm text-gray-500">
-       Dnt have an account
-        <a href="#" class="font-semibold leading-6 text-blue-600 hover:text-indigo-500">Sign up</a>
+      <p class="mt-10 text-center text-sm text-black">
+       Dont have an account?
+        <a routerLink = "/sign" class="font-semibold leading-6 text-black hover:text-blue-700">Sign up</a>
+
       </p>
     </div>
   </div>
