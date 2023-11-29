@@ -30,27 +30,18 @@ export class AuthService {
     );
   }
 
-  getUserDetails(): Observable<UserDetails> {
+  getUserDetails(){
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'token': token
     });
 
-    return this.http.get<UserDetails>('http://localhost:3500/users/userDetails/', { headers });
+    return this.http.get<UserDetails[]>('http://localhost:3500/users/userDetails/', { headers });
   }
+  // http://localhost:3500/users/userDetails/
 
-  // getUserDetails(): Observable<any> {
-  
-  //   const token = localStorage.getItem('token');
 
-  //   console.log(token);
-    
-  //   // const headers = token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : undefined;
-
-    
-  //   return this.http.get<any>('http://localhost:4500/users/details/', token);
-  // }
 
   isLoggedIn(): boolean {
    

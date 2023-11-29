@@ -4,14 +4,15 @@ CREATE TABLE Users(
     email VARCHAR(250) NOT NULL,
     password VARCHAR(100) NOT NULL,
     role VARCHAR(100) DEFAULT 'customer',
-    resetPasswordToken VARCHAR(100),
-    resetPasswordExpires DATETIME,
+    resetToken VARCHAR(500) DEFAULT NULL,
+    expiryTime DATETIME DEFAULT NULL,
     welcomed BIT Default 0,
+    isSend BIT DEFAULT 0,
     profileImage VARCHAR(1000) NOT NULL
 )
 
 select * from Users
 
 UPDATE Users SET role='Admin' where email='isaackilimok2@gmail.com' 
-
+-- ALTER TABLE Users ADD 
 DROP TABLE Users

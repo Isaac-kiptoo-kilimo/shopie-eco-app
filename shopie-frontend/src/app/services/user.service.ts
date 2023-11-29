@@ -26,7 +26,7 @@ export class UserService {
     });
   }
 
-  checkDetails(): Observable<string> {
+  checkDetails(): Observable<User> {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -35,15 +35,15 @@ export class UserService {
 
     return this.http
       .get<any>(this.apiUrl, { headers })
-      .pipe(map((data) => data.info.role));
+      .pipe(map((data) => data.info));
   }
 
 
 updateUserById(updatedUser:updatedUserData): Observable<any> {
   return this.authService.getUserDetails().pipe(
     switchMap((user) => {
-      console.log(user.userID);
-      let userID=user.userID
+      console.log(user[0].userID);
+      let userID=user[0].userID
       const token = localStorage.getItem('token') || '';
       console.log(token);
 

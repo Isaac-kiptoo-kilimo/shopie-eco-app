@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { checkCredentials, checkResetTokenExpiryController, deleteUserController, fetchAllUsersControllers, getSingleUserController, getUserDetails, loginUserControllers, registerUserControllers, resetPasswordControllers, setResetTokenAndExpirationController, updateUserControllers } from "../controllers/usersControllers";
+import { checkCredentials, checkResetTokenExpiryController, deleteUserController, fetchAllUsersControllers, getSingleUserController, getUserDetails, initiatePasswordResetController, loginUserControllers, registerUserControllers, resetPasswordControllers, setResetTokenAndExpirationController, updateUserControllers } from "../controllers/usersControllers";
 import { verifyToken } from "../middlewares/verifyToken";
 
 
@@ -13,11 +13,10 @@ userRouter.get('/all', verifyToken , fetchAllUsersControllers)
 userRouter.get('/checkUserDetails', verifyToken, checkCredentials);
 userRouter.get('/singleUser/:userID',verifyToken,getSingleUserController)
 userRouter.delete('/delete/:userID', deleteUserController)
-userRouter.post('/reset-password/:userID', resetPasswordControllers);
+userRouter.post('/initiate-password-reset', initiatePasswordResetController);
+userRouter.post('/reset-password', resetPasswordControllers);
 userRouter.post('/set-reset-token-expiration', setResetTokenAndExpirationController);
 userRouter.get('/check-reset-token-expiry/:userID', checkResetTokenExpiryController);
-
-
 
 
 

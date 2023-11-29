@@ -25,13 +25,14 @@ export interface UserDetails {
   fullName: string;
   email: string;
   role:string;
-  // Add other user details as needed
+  profileImage: string
 }
 
 export interface updatedUserData {
-  userID:string,
-  fullName: string,
-  email: string,
+  userID:string;
+  fullName: string;
+  email: string;
+ profileImage: string;
 };
 
 

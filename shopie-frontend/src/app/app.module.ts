@@ -16,6 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { CustomersComponent } from './customers/customers.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { SingleProductComponent } from './single-product/single-product.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { CustomersComponent } from './customers/customers.component';
     NotFoundComponent,
     UpdateProductComponent,
     SearchPipe,
-    CustomersComponent
+    CustomersComponent,
+    UpdateUserComponent,
+    ForgotPasswordComponent,
+    SingleProductComponent
   ],
   imports: [
     BrowserModule,

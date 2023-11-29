@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE getUserById(
+CREATE OR ALTER PROCEDURE getUserByEmail(
     @email VARCHAR (250)
 )
 
