@@ -1,5 +1,5 @@
-<body  class="bg-gray-100 font-sans flex">
-  <aside class="w-1/5 bg-gray-800 text-white p-4">
+<body  class="bg-gray-100 font-sans flex flex-col md:flex-row">
+  <aside class="w-full md:w-1/5 bg-gray-800 text-white p-4">
     <h2 class="text-2xl font-semibold mb-4">User Dashboard</h2>
     
     <nav>
@@ -13,12 +13,12 @@
     </nav>
   </aside>
 
-  <div  class="container mx-auto p-8 ">
+  <div  class="container mx-auto p-4 md:p-8 ">
   
   <div>
     <!-- <app-navbar></app-navbar> -->
-    <div class="flex justify-between  items-center border-b-2 border-gray-300 pb-3 mb-5  w-full " >
-      <div class="flex text-gray-900 ems-center space-x-4">
+    <div class="flex flex-col md:flex-row justify-between items-center border-b-2 border-gray-300 pb-3 mb-5 w-full" >
+      <div class="flex flex-col md:flex-row text-gray-900 items-center space-x-4">
       <input   [(ngModel)]="filter"
         type="text"
         placeholder="Search..."
@@ -36,7 +36,7 @@
         <p>{{userDetails.fullName}}</p>
       </button>
   </div>
-      <div *ngIf="showProfileDropdown" class="absolute right-0 mt-40 w-48 bg-white border rounded-md shadow-lg">
+      <div  *ngIf="showProfileDropdown" class="md:absolute right-0 mt-4 md:mt-0 w-48 bg-white border rounded-md shadow-lg">
         <!-- Dropdown content goes here -->
         <a  (click)="isFormVisible=!isFormVisible" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit Profile</a>
         <a (click)="logout()" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
@@ -53,12 +53,12 @@
   
     
    
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <div  *ngFor="let product of products | search: filter; let i = index">
-      <div class="sec4-img4 bg-white p-4 rounded-md shadow-md ">
+      <div class="sec4-img4 bg-white p-4 flex flex-col justify-between rounded-md shadow-md max-h-100 h-full hover:shadow-lg transition duration-300">
         <img
           [src]="product.image" (click)="notHidden=!notHidden" (click)="getSingleProduct(product.productID)"
-          class="w-full h-48 object-cover mb-2 rounded-md"
+          class="w-full h-48 object-cover mb-2 rounded-md transform transition hover:scale-105 duration-300 ease-in-out"
         />
         <p class="text-sm">
           {{product.name}}
@@ -79,7 +79,7 @@
   <div id="timeline-modal" *ngIf = "showCart"  tabindex="-1"  class="overflow-y-auto overflow-x-hidden inset-0 bg-gray-500 bg-opacity-75 transition-opacity fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="  relative p-4 w-full max-w-md max-h-full">
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
@@ -131,7 +131,8 @@
 
 </body>
 <!-- <app-single-product *ngIf="!notHidden"></app-single-product> -->
-<div id="top-right-modal" *ngIf="!notHidden"  data-modal-placement="top-right" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+<div id="top-right-modal" *ngIf="!notHidden" data-modal-placement="top-right" tabindex="-1"
+    class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 max-h-full">
   <div class="relative w-full max-w-full max-h-full">
    
       <div *ngIf="product" class="relative bg-white rounded-lg shadow dark:bg-gray-700">
