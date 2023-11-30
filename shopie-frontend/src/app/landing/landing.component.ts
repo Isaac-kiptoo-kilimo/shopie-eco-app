@@ -31,21 +31,21 @@ ngOnInit(){
   }
 
 }
-// document.addEventListener('DOMContentLoaded', function () {
-//   const heroContainer = document.getElementById('heroImage') as HTMLElement;
-//   const imageArray: string[] = [
-//     'https://luna-askmen-images.askmen.com/1080x540/2020/03/04-013731-best_gold_watches_for_every_style_and_budget.jpg',
-//     'https://assets-global.website-files.com/605826c62e8de87de744596e/63f5e30a4d577354fdfce512_Duotone-Master-ssssFile-copy.jpg',
-//     'https://images.drive.com.au/caradvice/image/private/q_auto/v1/1f3591b935f75c9690294dde3584c10a',
-//   ];
-//   let currentIndex = 0;
+document.addEventListener('DOMContentLoaded', function () {
+  const heroContainer = document.getElementById('heroImage') as HTMLElement;
+  const imageArray: string[] = [
+    'https://luna-askmen-images.askmen.com/1080x540/2020/03/04-013731-best_gold_watches_for_every_style_and_budget.jpg',
+    'https://assets-global.website-files.com/605826c62e8de87de744596e/63f5e30a4d577354fdfce512_Duotone-Master-ssssFile-copy.jpg',
+    'https://images.drive.com.au/caradvice/image/private/q_auto/v1/1f3591b935f75c9690294dde3584c10a',
+  ];
+  let currentIndex = 0;
 
-//   function changeBackgroundImage() {
-//     heroContainer.style.backgroundImage = `url('${imageArray[currentIndex]}')`;
-//     currentIndex = (currentIndex + 1) % imageArray.length;
-//   }
+  function changeBackgroundImage() {
+    heroContainer.style.backgroundImage = `url('${imageArray[currentIndex]}')`;
+    currentIndex = (currentIndex + 1) % imageArray.length;
+  }
 
-//   setInterval(changeBackgroundImage, 3000);
-// });
+  setInterval(changeBackgroundImage, 3000);
+});
 
 
