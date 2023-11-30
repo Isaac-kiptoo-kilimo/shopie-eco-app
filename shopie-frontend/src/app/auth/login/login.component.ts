@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
+import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -48,17 +49,20 @@ loginUser(){
       
       this.userService.checkDetails().subscribe(
         
-        (role) => {
-          console.log('User role:', role); 
+        (user:User) => {
+          console.log('User:', user ); 
           this.loggedInState = true;
           this.successMessage = 'Logged in successfully.';
           setTimeout(() => {
             this.successMessage = '';
             this.loggingIn = false;
 
-            if (role === 'Admin') {
+            // localStorage.setItem('')
+
+            if (user.role === 'Admin') {
               this.router.navigate(['admin']);
-            } else if (role === 'customer') {
+
+            } else if (user.role === 'customer') {
               this.router.navigate(['user']);
             }
           }, 2000);

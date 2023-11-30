@@ -99,10 +99,9 @@ export const getSingleProduct = async (req: Request, res: Response) => {
     const result = await request.execute("getSingleProduct");
 
     if (result.recordset.length > 0) {
-      return res.status(200).json({
-        success: true,
-        user: result.recordset[0],
-      });
+      return res.json(
+        result.recordset[0]
+      );
     } else {
       return res
         .status(404)
@@ -123,7 +122,7 @@ export const fetchAllProductsControllers=async(req:Request,res:Response)=>{
   const result=await pool.request().execute('fetchAllProducts')
 
   const fetchedProduct=result.recordset
-console.log(fetchedProduct);
+// console.log(fetchedProduct);
 
   return res.json(fetchedProduct)
   

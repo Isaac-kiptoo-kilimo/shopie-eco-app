@@ -15,7 +15,35 @@
   </aside>
 
   <div class="container mx-auto">
-    <app-navbar></app-navbar>
+    <!-- <app-navbar></app-navbar> -->
+    <div>
+      <!-- <app-navbar></app-navbar> -->
+      <div class="flex justify-between  items-center border-b-2 border-gray-300 pb-3 mb-5  w-full " >
+        <div class="flex text-gray-900 ems-center space-x-4">
+        <input   [(ngModel)]="filter"
+          type="text"
+          placeholder="Search..."
+          class="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+        />
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+          Search
+        </button>
+      </div>
+    <div class="">
+        <button (click)="toggleProfileDropdown()" class="nav-link rounded-md hover:bg-blue-600 hover:text-white p-1 focus:outline-none">
+          <img [src]="userDetails.profileImage" alt="Profile" class="w-8 h-8 rounded-full">
+          <p>{{userDetails.fullName}}</p>
+        </button>
+    </div>
+        <div *ngIf="showProfileDropdown" class="absolute right-0 mt-40 w-48 bg-white border rounded-md shadow-lg">
+          <!-- Dropdown content goes here -->
+          <a  (click)="isFormVisible=!isFormVisible" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit Profile</a>
+          <a (click)="logout()" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+        </div>
+     
+    </div>
+  
+    </div>
     <div class="rounded-tl-3xl bg-gradient-to-r flex justify-between m-6 px-4 from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
       <h3 class="font-bold pl-2">Products </h3>
 
@@ -26,6 +54,7 @@
     
 
   </div>
+  
   <app-update-product ></app-update-product>
 
   </div>
@@ -95,8 +124,10 @@
     </div>
   </div>
   
-  
+  <app-update-user  *ngIf="!isFormVisible" ></app-update-user>
+
 </body>
+
 <app-footer></app-footer>
 
 

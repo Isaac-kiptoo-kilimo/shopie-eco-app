@@ -16,6 +16,7 @@ export class SingupComponent {
     this.registrationForm=this.formbuilder.group({
       fullName:['',[Validators.required]],
       email:['',[Validators.required]],
+      profileImage:['',[Validators.required]],
       password:['',[Validators.required]]
     }
     )

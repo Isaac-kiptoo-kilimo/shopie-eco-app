@@ -4,15 +4,14 @@ export interface User {
     email: string;
     password: string;
     role: string;
+    profileImage: string
 }
 
 
   export interface LoginResponse {
     user: User | undefined;
-    // userID(userID: any): unknown;
     token: string;
     userID:string
-    // Add other properties if needed
   }
 
   export interface userLogin {
@@ -26,13 +25,14 @@ export interface UserDetails {
   fullName: string;
   email: string;
   role:string;
-  // Add other user details as needed
+  profileImage: string
 }
 
 export interface updatedUserData {
-  userID:string,
-  fullName: string,
-  email: string,
+  userID:string;
+  fullName: string;
+  email: string;
+ profileImage: string;
 };
 
 
