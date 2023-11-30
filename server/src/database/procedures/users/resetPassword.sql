@@ -1,22 +1,33 @@
--- CREATE OR ALTER PROCEDURE resetPassword(
---     @userID VARCHAR(100),
---     @password VARCHAR(100)
--- )
 
--- AS
--- BEGIN
---     UPDATE Users SET password=@password WHERE userID=@userID
-
--- END
-
-CREATE OR ALTER PROCEDURE ResetPassword
-    @userID VARCHAR(100),
+--use SHOPPIE_ECO_APP
+CREATE OR ALTER PROCEDURE ResetPassword(
+    @email VARCHAR (250),
+    @resetToken VARCHAR(500),
     @newPassword VARCHAR(100)
+)
 AS
 BEGIN
-    UPDATE Users
-    SET password = @newPassword,
-        resetPasswordToken = NULL,
-        resetPasswordExpires = NULL
-    WHERE userID = @userID;
+    if EXISTS (select 1 from Users where email = @email)
+    begin
+        if exists(select 1 from Users where email = @email and resetToken = @resetToken)
+    begin
+        update Users 
+    set password = @newPassword,
+        resetToken = null,
+        expiryTime = null,
+        isSend = 0
+    where email = @email;
+        select 'password updated successfully 'as message;
+        END
+    ELSE
+    begin
+            select 'invalid token' as message;
+        END
+    end
+    ELSE
+    begin
+        select 'invalid email' as message
+    end
+
+
 END;

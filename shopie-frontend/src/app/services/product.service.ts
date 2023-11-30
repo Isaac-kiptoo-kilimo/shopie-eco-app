@@ -53,4 +53,6 @@ export class ProductService {
     return this.http.delete(`http://localhost:3500/products/delete/${productID}`)
    
   }
+
+  
 }
