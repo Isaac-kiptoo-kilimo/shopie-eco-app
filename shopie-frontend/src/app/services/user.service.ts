@@ -73,4 +73,17 @@ deleteUser(userID: string): Observable<any> {
     });
   }
 
+  initializePasswordReset(user:User){
+    this.http.post('http://localhost:3500/users/initiate-password-reset/',user).subscribe(res=>{
+      return res
+    })
+  }
+
+  resetPassword(user:User){
+    this.http.post('http://localhost:3500/users/reset-password/',user).subscribe(res=>{
+      return res
+    })
+  }
+
+  
 }

@@ -19,6 +19,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SingleProductComponent } from './single-product/single-product.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SingleProductComponent } from './single-product/single-product.componen
     CustomersComponent,
     UpdateUserComponent,
     ForgotPasswordComponent,
-    SingleProductComponent
+    SingleProductComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

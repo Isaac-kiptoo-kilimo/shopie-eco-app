@@ -4,6 +4,7 @@ import { Product } from 'src/app/interfaces/product';
 import { UserDetails } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -23,11 +24,13 @@ export class UserComponent {
 cartItems: any[] = [];
 cartQuantity: number = 0;
 cartTotal: number = 0;
+notHidden=true
 // showCart=false
 // loggedIn: boolean = false;
 showProfileDropdown: boolean = false;
+  product!: any;
 
-  constructor(private router:Router, private userService: UserService,  private cartService: CartService, private authService: AuthService) {
+  constructor(private router:Router, private userService: UserService,  private cartService: CartService, private authService: AuthService, private productService: ProductService) {
     this.loggedIn = authService.isLoggedIn();
   }
 
@@ -71,6 +74,15 @@ showProfileDropdown: boolean = false;
     });
   }
 
+  getSingleProduct(productID: string){
+    console.log(productID);
+    
+    this.productService.getSingleProduct(productID).subscribe((res)=>{
+      this.product=res
+      console.log(this.product.shortDescription);
+      
+    })
+  }
   addToCart(product: any, userID:string) {
     console.log(product);
     

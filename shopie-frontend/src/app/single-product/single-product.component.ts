@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./single-product.component.css']
 })
 export class SingleProductComponent {
-
+notHidden=true
 }

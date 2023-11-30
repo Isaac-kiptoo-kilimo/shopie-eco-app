@@ -8,10 +8,12 @@
     <div class="w-full mb-4">
       <div class="h-1 mx-auto  w-64 opacity-25 my-0 py-0 rounded-t"></div>
     </div>
-    <!-- <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
-   -->
+
+  
     <div class="mt-10 sm:mx-auto sm:w-full rounded-md sm:max-w-sm shadow-2xl p-6 bg-gray-100 ">
+      <div data-cy="general-message" [ngClass]="{'success-message': successMessage, 'error-message': errorMessage}" class="message">
+        {{ successMessage || errorMessage }}
+      </div>
       <form class="space-y-6 mt-7" [formGroup]="logInUserForm" (ngSubmit)="loginUser()" >
         <div>
          
@@ -20,6 +22,8 @@
           <label for="email" class="block text-lg mb-3 font-medium leading-6 text-gray-900 ">Email address</label>
           <div class="mt-2">
             <input id="email" formControlName="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 lg:text-lg sm:leading-6 py-2 p-3">
+            <div data-cy="error-message" *ngIf="logInUserForm.get('email')?.touched && logInUserForm.get('email')?.hasError('required')" class="text-red-500">Email is required</div>
+                <div data-cy="error-message-email" *ngIf="logInUserForm.get('email')?.touched && logInUserForm.get('email')?.hasError('email')" class="text-red-500">Not a valid email</div>
           </div>
         </div>
   
@@ -30,6 +34,7 @@
           </div>
           <div class="mt-2">
             <input id="password" formControlName="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 lg:text-lg lg:leading-6 py-2 p-3">
+            <div data-cy="error-message" *ngIf="logInUserForm.get('password')?.touched && logInUserForm.get('password')?.hasError('required')" class="text-red-500">Password is required</div>
           </div>
           
         </div>

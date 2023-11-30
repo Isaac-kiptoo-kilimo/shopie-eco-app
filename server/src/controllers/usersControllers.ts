@@ -261,7 +261,7 @@ export const initiatePasswordResetController = async (req: Request, res: Respons
 export const resetPasswordControllers = async (req: Request, res: Response) => {
   try {
     // const { userID } = req.params;
-    const { email, reseToken, newPassword } = req.body;
+    const { email, resetToken, newPassword } = req.body;
 
     newPassword
     // Hash the new password before updating
@@ -269,7 +269,7 @@ export const resetPasswordControllers = async (req: Request, res: Response) => {
 
    
     const result = await dbhelpers.execute('ResetPassword', {
-      email, reseToken,
+      email, resetToken,
       newPassword: hashedPassword,
     });
 
@@ -302,53 +302,53 @@ export const resetPasswordControllers = async (req: Request, res: Response) => {
 }
 
 
-export const setResetTokenAndExpirationController = async (req: Request, res: Response) => {
-  try {
-    const { userID, resetToken, expiration } = req.body;
+// export const setResetTokenAndExpirationController = async (req: Request, res: Response) => {
+//   try {
+//     const { userID, resetToken, expiration } = req.body;
 
-    // Update the reset token and expiration using the database helper class
-    const result = await dbhelpers.execute('SetResetTokenAndExpiration', {
-      userID,
-      resetToken,
-      expiration,
-    });
+//     // Update the reset token and expiration using the database helper class
+//     const result = await dbhelpers.execute('SetResetTokenAndExpiration', {
+//       userID,
+//       resetToken,
+//       expiration,
+//     });
 
-    if (result.rowsAffected[0] > 0) {
-      res.status(200).json({ message: 'Reset token and expiration set successfully.' });
-    } else {
-      res.status(404).json({ message: 'User not found or reset token not set.' });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+//     if (result.rowsAffected[0] > 0) {
+//       res.status(200).json({ message: 'Reset token and expiration set successfully.' });
+//     } else {
+//       res.status(404).json({ message: 'User not found or reset token not set.' });
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// };
 
 
-export const checkResetTokenExpiryController = async (req: Request, res: Response) => {
-  try {
-    const { userID } = req.params;
+// export const checkResetTokenExpiryController = async (req: Request, res: Response) => {
+//   try {
+//     const { userID } = req.params;
 
-    // Check reset token expiry using the database helper class
+//     // Check reset token expiry using the database helper class
 
-    const newDateTime = new Date().toISOString()
-    const result = await dbhelpers.execute('CheckResetTokenExpiry', {
-      userID,
-      currentDateTime: newDateTime,
-    });
+//     const newDateTime = new Date().toISOString()
+//     const result = await dbhelpers.execute('CheckResetTokenExpiry', {
+//       userID,
+//       currentDateTime: newDateTime,
+//     });
 
-    const resetTokenExpires = result.recordset[0]?.resetPasswordExpires;
+//     const resetTokenExpires = result.recordset[0]?.resetPasswordExpires;
 
-    if (resetTokenExpires && new Date(resetTokenExpires) > new Date()) {
-      res.status(200).json({ message: 'Reset token is still valid.' });
-    } else {
-      res.status(400).json({ message: 'Invalid or expired reset token.' });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+//     if (resetTokenExpires && new Date(resetTokenExpires) > new Date()) {
+//       res.status(200).json({ message: 'Reset token is still valid.' });
+//     } else {
+//       res.status(400).json({ message: 'Invalid or expired reset token.' });
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// };
 
 
 export const forgotPasswordController = (req: Request, res: Response) => {
