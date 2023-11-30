@@ -14,6 +14,6 @@ CREATE TABLE Users(
 
 select * from Users
 
-UPDATE Users SET role='Admin' where email='isaackilimok2@gmail.com' 
+UPDATE Users SET role='Admin' where email='isaackilimok1@gmail.com' 
 -- ALTER TABLE Users ADD 
 DROP TABLE Users

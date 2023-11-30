@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -10,7 +11,7 @@ import { UserService } from '../services/user.service';
 export class ResetPasswordComponent {
 resetPasswordForm!: FormGroup
 
-constructor(private formBuilder:FormBuilder, private userService: UserService){
+constructor(private formBuilder:FormBuilder, private userService: UserService, private router:Router){
   this.resetPasswordForm=this.formBuilder.group({
     email:['',[Validators.required]],
     resetToken:['',[Validators.required]],
@@ -24,6 +25,8 @@ resetPassword(){
     console.log(resetPassword);
     
     this.userService.resetPassword(resetPassword)
+    
+      this.router.navigate(['login']);
 
   }else{
     this.resetPasswordForm.markAllAsTouched()
