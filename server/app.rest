@@ -55,9 +55,9 @@ POST http://localhost:3500/users/reset-password/
 Content-Type: application/json
 
 {
-   "email": "joshuaomondi3334@gmail.com",
-   "resetToken":"",
-   "newPassword":"" 
+   "email": "isaackilimok2@gmail.com",
+   "resetToken":"d299ae10-9188-4a2c-a145-b06562e454d9",
+   "newPassword":"12345678@ik" 
 }
 
 

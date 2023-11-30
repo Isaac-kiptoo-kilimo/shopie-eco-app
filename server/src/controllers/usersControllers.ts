@@ -8,7 +8,6 @@ import { ExtendeUser } from "../middlewares/verifyToken"
 import jwt from 'jsonwebtoken'
 import Connection from "../dbhelpers/dbhelpers"
 import { generateResetToken } from "../utils/generateResetToken"
-import { sendResetTokenByEmail } from "../utils/resetPassword"
 
 
 const dbhelpers = new Connection
@@ -258,38 +257,42 @@ export const initiatePasswordResetController = async (req: Request, res: Respons
 };
 
 
+
 export const resetPasswordControllers = async (req: Request, res: Response) => {
   try {
-    // const { userID } = req.params;
     const { email, resetToken, newPassword } = req.body;
-
+    console.log("reset token ", resetToken);
     newPassword
     // Hash the new password before updating
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-   
     const result = await dbhelpers.execute('ResetPassword', {
-      email, resetToken,
+      email,
+      resetToken,
       newPassword: hashedPassword,
     });
 
+    console.log("rows affected", result.rowsAffected);
+
     if (result.rowsAffected[0] > 0) {
       res.status(200).json({ message: 'Password reset successful.' });
-    } else {
-      res.status(404).json({ message: 'User not found or password not reset.' });
+      return;
     }
+
+    console.log("Record sets", result.recordset);
 
     if (result.recordset && result.recordset.length > 0) {
       const message = result.recordset[0].message;
+      console.log("message:", message);
 
       if (message === 'Password updated successfully') {
-        return res.status(200).json({ message: 'Password reset successful' });
+        res.status(200).json({ message: 'Password reset successful' });
       } else if (message === 'Invalid token') {
-        return res.status(400).json({ message: 'Invalid reset token' });
+        res.status(400).json({ message: 'Invalid reset token' });
       } else if (message === 'Invalid email') {
-        return res.status(400).json({ message: 'Invalid email' });
+        res.status(400).json({ message: 'Invalid email' });
       } else {
-        return res.status(500).json({
+        res.status(500).json({
           message: 'Error resetting password',
         });
       }
@@ -298,8 +301,8 @@ export const resetPasswordControllers = async (req: Request, res: Response) => {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-
 }
+
 
 
 // export const setResetTokenAndExpirationController = async (req: Request, res: Response) => {

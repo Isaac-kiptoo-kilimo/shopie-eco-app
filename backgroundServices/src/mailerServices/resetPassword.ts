@@ -21,7 +21,7 @@ export const sendResetTokenByEmail = async()=>{
         }
         try{
             await sendMail(mailOptions)
-            await pool.request().query('UPDATE Users SET isSend= 1 WHERE email = @email')
+            await pool.request().query(`UPDATE Users SET isSend= 1 WHERE isSend=0`)
 
             console.log('Emails send to new Users');
             

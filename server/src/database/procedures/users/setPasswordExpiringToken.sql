@@ -1,5 +1,5 @@
 CREATE OR ALTER PROCEDURE SetResetTokenAndExpiration(
-  @email VARCHAR(255),
+    @email VARCHAR(255),
     @resetToken VARCHAR(255),
     @expiryTime DATETIME
     )

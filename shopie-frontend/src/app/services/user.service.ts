@@ -81,6 +81,8 @@ deleteUser(userID: string): Observable<any> {
 
   resetPassword(user:User){
     this.http.post('http://localhost:3500/users/reset-password/',user).subscribe(res=>{
+      console.log(res);
+      
       return res
     })
   }
