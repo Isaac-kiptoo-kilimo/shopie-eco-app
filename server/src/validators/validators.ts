@@ -12,7 +12,8 @@ export const regUserValidation = Joi.object({
     }),
     password: Joi.string().required().pattern(
         new RegExp('^[a-zA-Z0-9!@#$%^&*()]{3,30}$')
-    )
+    ),
+    profileImage: Joi.string().required()
 })
 
 
@@ -37,6 +38,7 @@ export const validateUpdateuser=Joi.object({
         minDomainSegments:2, tlds:{
             allow: ['com', 'ke']
         }
-    })
+    }),
+    profileImage: Joi.string().required()
 })
 

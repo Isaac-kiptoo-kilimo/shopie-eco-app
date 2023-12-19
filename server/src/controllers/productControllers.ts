@@ -62,10 +62,17 @@ export const UpdateProductControllers = async (req: Request, res: Response) => {
     mssql.Int,price).input("image", mssql.VarChar(1000),image).execute("UpdateProduct");
 
 
-    return res.status(200).json({
-      success: true,
-      message: "Product status updated successfully",
-    });
+    if (updatedProduct.returnValue === 0) {
+      return res.status(200).json({
+        success: true,
+        message: "Product updated successfully",
+      });
+    } else {
+      return res.status(500).json({
+        success: false,
+        message: "Failed to update product",
+      });
+    }
   } catch (error) {
     return res.json({
       error: error,
@@ -92,10 +99,9 @@ export const getSingleProduct = async (req: Request, res: Response) => {
     const result = await request.execute("getSingleProduct");
 
     if (result.recordset.length > 0) {
-      return res.status(200).json({
-        success: true,
-        user: result.recordset[0],
-      });
+      return res.json(
+        result.recordset[0]
+      );
     } else {
       return res
         .status(404)
@@ -116,7 +122,7 @@ export const fetchAllProductsControllers=async(req:Request,res:Response)=>{
   const result=await pool.request().execute('fetchAllProducts')
 
   const fetchedProduct=result.recordset
-console.log(fetchedProduct);
+// console.log(fetchedProduct);
 
   return res.json(fetchedProduct)
   

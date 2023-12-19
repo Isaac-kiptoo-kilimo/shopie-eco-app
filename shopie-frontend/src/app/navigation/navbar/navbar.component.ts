@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/interfaces/product';
+import { UserDetails } from 'src/app/interfaces/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { CartService } from 'src/app/services/cart.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,15 +13,47 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor (private router: Router){}
+  products: Product[] = [];
+  cartItems: any[] = [];
+  cartQuantity: number = 0;
+  cartTotal: number = 0;
+  showCart=false
+  loggedIn: boolean = false;
+  showProfileDropdown: boolean = false;
+ filter=''
+ userDetails!: UserDetails ;
+ userID! : string;
 
+  constructor(private router: Router, private authService: AuthService, private formBuilder:FormBuilder, private productService: ProductService, private cartService: CartService) {
+    this.loggedIn = authService.isLoggedIn();
+  }
 
   loggedInTrue = localStorage.getItem('loggedIn')
 
-  loggedIn = this.loggedInTrue
+  // loggedIn = this.loggedInTrue
 
   ngOnInit(): void {
-  
+    this.getProducts();
+    this.getCartItems()
+    this.cartService.cartItems$.subscribe(cartItems => {
+      this.cartQuantity = cartItems.length;
+      this.cartTotal = this.cartService.getTotalPrice();
+    });
+    if (this.authService.isLoggedIn()) {
+     
+      this.authService.getUserDetails().subscribe(
+        (userDetails) => {
+          console.log(userDetails[0].fullName);
+          
+          this.userDetails = userDetails[0];
+          this.userID = userDetails[0].userID;
+          this.getProducts();
+        },
+        (error) => {
+          console.error('Error getting user details:', error);
+        }
+      );
+    }
   }
 
   checkLoggedIn(){
@@ -26,14 +64,39 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  Logout(){
-    
-    this.router.navigate([''])
-    localStorage.clear()
 
-    console.log(localStorage.getItem('token'));
-    
+
+  getProducts() {
+    this.productService.getProducts().subscribe((products) => {
+      this.products = products;
+    });
   }
 
-  date = new Date()
+ 
+getCartItems(){
+  this.cartService.cartItems$.subscribe((cartItems) => {
+    this.cartItems = cartItems;
+  });
 }
+
+  removeFromCart(index: number) {
+    this.cartService.removeFromCart(index);
+  }
+
+  clearCart() {
+    this.cartService.clearCart();
+  }
+ 
+
+  logout() {
+    this.router.navigate(['']);
+    localStorage.clear();
+    this.loggedIn = false;
+  }
+
+  toggleProfileDropdown() {
+    this.showProfileDropdown = !this.showProfileDropdown;
+  }
+}
+
+

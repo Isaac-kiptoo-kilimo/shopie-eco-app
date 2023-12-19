@@ -5,7 +5,7 @@ CREATE OR ALTER PROCEDURE getSingleUser(
 
 AS
 BEGIN
-	SELECT	userID,email,fullName,role
+	SELECT	userID,email,fullName,role,profileImage
 	FROM Users WHERE userID= @userID
 END
 

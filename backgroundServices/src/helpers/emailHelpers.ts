@@ -1,6 +1,6 @@
 import { mail_configs } from "../interface/mail_config";
 import nodemailer from 'nodemailer'
-import * as dotenv from 'dotenv'
+import dotenv from 'dotenv'
 
 dotenv.config();
 

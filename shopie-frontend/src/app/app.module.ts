@@ -10,6 +10,15 @@ import { AdminComponent } from './dashboards/admin/admin.component';
 import { UserComponent } from './dashboards/user/user.component';
 import { LandingComponent } from './landing/landing.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UpdateProductComponent } from './update-product/update-product.component';
+import { SearchPipe } from './pipes/search.pipe';
+import { CustomersComponent } from './customers/customers.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { SingleProductComponent } from './single-product/single-product.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +30,21 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AdminComponent,
     UserComponent,
     LandingComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    UpdateProductComponent,
+    SearchPipe,
+    CustomersComponent,
+    UpdateUserComponent,
+    ForgotPasswordComponent,
+    SingleProductComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -7,7 +7,8 @@ BEGIN
         userID,
         fullName,
         email,
-        role
+        role,
+        profileImage
     FROM
         Users
     WHERE

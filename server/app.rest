@@ -3,9 +3,10 @@ POST http://localhost:3500/users/register/
 Content-Type: application/json
 
 {
-    "fullName": "Emmanuel Kipsang",
-    "email": "emmqnuelkipsqng@gmail.com",
-    "password": "12345678@Ek"
+    "fullName": "joshua omondi",
+    "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "email": "joshuaomondi3334@gmail.com",
+    "password": "12345678@Jo"
 }
 
 
@@ -14,8 +15,8 @@ POST http://localhost:3500/users/login/
 Content-Type: application/json
 
 {
-   "email": "meshack@gmail.com",
-   "password": "12345678@Ek" 
+   "email": "joshuaomondi3334@gmail.com",
+   "password": "12345678@Jo" 
 }
 
 ### fetching all users
@@ -39,12 +40,30 @@ token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZjA5OWIwNS0zYTUxLTQ
 
 ### fetching user
 GET http://localhost:3500/users/userDetails/
-token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI3ZjdjODdlYS05NjBmLTQ4OGUtODc2Yy0zM2JhMWYzMjEyN2YiLCJmdWxsTmFtZSI6Im1lc2hhY2sga2lwc2FuZyIsImVtYWlsIjoibWVzaGFja0BnbWFpbC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJyZXNldFBhc3N3b3JkIjowLCJpYXQiOjE3MDA5Mzg2MDEsImV4cCI6MTcwMTExMTQwMX0.T79Ry2bxCZJ_Tmt3_Bdbq53uTOjsUp6r9rcJG3oFqmk
+token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJlNTFhNTQ4Yy0xNzdmLTQ0OWItOWI1Zi05OGE2NGJiMmQ5NGYiLCJmdWxsTmFtZSI6IjEyMzQ1Njc4QEpvIiwiZW1haWwiOiJqb3NodWFvbW9uZGkzMzM0QGdtYWlsLmNvbSIsInJvbGUiOiJjdXN0b21lciIsInJlc2V0UGFzc3dvcmRUb2tlbiI6bnVsbCwicmVzZXRQYXNzd29yZEV4cGlyZXMiOm51bGwsIndlbGNvbWVkIjp0cnVlLCJwcm9maWxlSW1hZ2UiOiJkYXRhOmltYWdlL2pwZWc7YmFzZTY0LC85ai80QUFRU2taSlJnQUJBUUFBQVFBQkFBRC8yd0NFQUFrR0J3Z0hCZ2tJQndnS0Nna0xEUllQRFF3TURSc1VGUkFXSUIwaUlpQWRIeDhrS0RRc0pDWXhKeDhmTFQwdE1UVTNPam82SXlzL1JEODRRelE1T2pjQkNnb0tEUXdOR2c4UEdqY2xIeVUzTnpjM056YzNOemMzTnpjM056YzNOemMzTnpjM056YzNOemMzTnpjM056YzNOemMzTnpjM056YzNOemMzTnpjM04vL0FBQkVJQUlZQWhnTUJJZ0FDRVFFREVRSC94QUFjQUFFQUFRVUJBUUFBQUFBQUFBQUFBQUFBQmdFREJBVUhBZ2oveEFBOEVBQUJCQUVCQlFRSUJBTUpBUUFBQUFBQkFBSURCQkVGQmhJaE1VRVRVV0Z4QnlJeVFvR1JvYkVVSTFMQmNwTGhKQ1l6UTFOVlk4THdGdi9FQUJzQkFBSURBUUVCQUFBQUFBQUFBQUFBQUFBRkF3UUdBZ0VILzhRQUtoRUFBZ0lCQXdJR0FRVUJBQUFBQUFBQUFBRUNBd1FSRWpFRklSTWlNa0ZSWVpFVmNZR2hzUlQvMmdBTUF3RUFBaEVERVFBL0FPNG9pSUFJaUlBSXFaVk04Y0lBOUlzTzdxZE9pM2V1V29ZUi93QWp3RnBwOXVkQmljV2kyNlFqL1RpY1I4OExpVmtZOHNsaFJiWjZJdC93U1ZGRXg2UWRFSndYV1I0OWlWbDF0dE5Dc093MjgyTTkwckhNK3BHRnlycTN3eVNXSGtSV3JnL3dTRkZZZ3RSV1l4SlhsamxZZmVZNEVLOWxTYWxaOWlxSWk5QUlpSUFJaUlBSWlJQUtoSUNIa296dGR0UEhvY0haUTdzbDZSdVdSbmswZnFLNWxKUldySktxcDJ6VUlMVnMyT3VhN1IwYURmdVM0Y2ZZamJ4Yy93QWd1YzYxdHhxZW9GMGRVL2c0RDBaeGVmTjNUNEtQWExkaTdaZll0eXVsbWVjdWM3N2VBVmhLcnN1YyswZXlOVmg5SXFwVzZ6elArajA5enBIbDhqblBlVHhjNDVKWGxhcld0WEduNGloRFh6dUdRSGNtanZLajc5YTFGN2lmeEpibm8xb0M2cHdyYlZ1SmNqcWxHUEx3OU5YOUUyd3FLR1I2NXFNZitlSGp1ZXdGWlVXMDFvSDgyR0Y0OE10WFV1bTNMalFqaDFyR2wyZXFKZlZ0MktVb2xwenlRdkhXTnhHVk10QzlJRThKYkRyRWZheDh1M2pHSER6SFg0TG0yIiwiaWF0IjoxNzAxMjM3NDczLCJleHAiOjE3MDE0MTAyNzN9.60M_G-fEaEu6KVQ44CurXc55fHr_7V1HaMwKT8h_BK4
+
+### reset password
+POST http://localhost:3500/users/initiate-password-reset/
+Content-Type: application/json
+
+{
+   "email": "joshuaomondi3334@gmail.com" 
+}
+
+### reset password
+POST http://localhost:3500/users/reset-password/
+Content-Type: application/json
+
+{
+   "email": "joshuaomondi3334@gmail.com",
+   "resetToken":"",
+   "newPassword":"" 
+}
 
 
 ### checking user details
 GET http://localhost:3500/users/checkUserDetails/
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZjA5OWIwNS0zYTUxLTQyNWUtYTZjMS1kZGVjZjBkNWNhNTAiLCJmdWxsTmFtZSI6IklzYWFjIEtpbGltbyIsImVtYWlsIjoiaXNhYWNraWxpbW9rMkBnbWFpbC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJyZXNldFBhc3N3b3JkIjowLCJpYXQiOjE3MDA5MjEwNjIsImV4cCI6MTcwMTA5Mzg2Mn0.08NJL5E2e3sdd-0vy-sPxgai1RQ3xAmIDQ7JLCLPp2I
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiNjc3ZDk2NC01ZTIxLTQyMDItOGJjNC1iNzc5ZDcyMzExZTAiLCJmdWxsTmFtZSI6Impvc2h1YSBvbW9uZGkiLCJlbWFpbCI6Impvc2h1YW9tb25kaTMzMzRAZ21haWwuY29tIiwicm9sZSI6ImN1c3RvbWVyIiwicmVzZXRQYXNzd29yZFRva2VuIjpudWxsLCJyZXNldFBhc3N3b3JkRXhwaXJlcyI6bnVsbCwid2VsY29tZWQiOnRydWUsImlhdCI6MTcwMTE4NzE4OSwiZXhwIjoxNzAxMzU5OTg5fQ.0hRlKsXGtEKP8_MP--ROem0zMLUBlePZA2-VFI2mmBY
 
 
 #### deleting user
