@@ -1,5 +1,7 @@
+import mssql, { pool } from "mssql";
+import dotenv from "dotenv";
 
-import * as dotenv from 'dotenv'
+dotenv.config();
 
 dotenv.config()
 
@@ -19,9 +21,9 @@ export const dbConfig={
     }
 }
 
-const testConnection=()=>{
-  console.log('Connected to database');
+// const testConnection=()=>{
+//   console.log('Connected to database');
   
-}
+// }
 
-testConnection()
+// testConnection()

@@ -176,7 +176,6 @@ export const deleteProduct = async (req: Request, res: Response) => {
   }
 };
 
-
 function execute(arg0: string, arg1: { ProductID: string; name: any; shortDescription: any; price: any; image: any; }) {
     throw new Error("Function not implemented.");
 }
