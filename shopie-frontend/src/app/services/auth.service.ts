@@ -5,47 +5,45 @@ import { Observable,tap } from 'rxjs';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(private http:HttpClient) { }
-  private apiUrl = 'http://localhost:3500/users';
-  registerUser(user:User){
-    this.http.post(`${this.apiUrl}/register/`,user).subscribe(res=>{
-      return res
-    })
+  constructor(private http: HttpClient) {}
+  public apiUrl = 'http://localhost:3500/users';
+  registerUser(user: User) {
+    this.http.post(`${this.apiUrl}/register/`, user).subscribe((res) => {
+      return res;
+    });
   }
-
+  getApiUrl(): string {
+    return this.apiUrl;
+  }
 
   login(user: User): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.apiUrl}/login/`, user).pipe(
       tap((result) => {
-        
         const token = result.token;
 
-       
         localStorage.setItem('token', token);
       })
     );
   }
 
-  getUserDetails(){
+  getUserDetails() {
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'token': token
+      token: token,
     });
 
-    return this.http.get<UserDetails[]>('http://localhost:3500/users/userDetails/', { headers });
+    return this.http.get<UserDetails[]>(
+      'http://localhost:3500/users/userDetails/',
+      { headers }
+    );
   }
   // http://localhost:3500/users/userDetails/
 
-
-
   isLoggedIn(): boolean {
-   
     return !!localStorage.getItem('token');
   }
-  
 }
